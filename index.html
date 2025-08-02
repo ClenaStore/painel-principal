@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Minha Empresa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 10px 30px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      border-bottom: 1px solid #00ff00;
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    nav a {
+      color: #00ff00;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00ffaa;
+    }
+
+    .content {
+      padding-top: 80px;
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    h1, h2 {
+      color: #00ff00;
+    }
+
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: black;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="matrix-bg">
+    <canvas id="matrixCanvas"></canvas>
+  </div>
+
+  <header>
+    <img src="SUA_LOGO_AQUI.png" alt="Logo">
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#orcamento">Orçamento</a>
+      <a href="#sistemas">Sistemas Pré-instalados</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <section id="inicio">
+      <h1>Bem-vindo à Nossa Empresa</h1>
+      <p>Soluções tecnológicas para o futuro.</p>
+    </section>
+
+    <section id="servicos">
+      <h2>Serviços</h2>
+      <p>Desenvolvimento web, automações, integração com APIs, sistemas personalizados e mais.</p>
+    </section>
+
+    <section id="orcamento">
+      <h2>Solicitar Orçamento</h2>
+      <p>Entre em contato para desenvolvermos a melhor solução para seu negócio.</p>
+    </section>
+
+    <section id="sistemas">
+      <h2>Sistemas Pré-instalados</h2>
+      <p>Temos sistemas prontos para delivery, reservas, requisições, e painéis empresariais.</p>
+    </section>
+
+    <section id="duvidas">
+      <h2>Dúvidas Frequentes</h2>
+      <p>Entre em contato conosco pelo WhatsApp ou e-mail para mais informações.</p>
+    </section>
+  </div>
+
+  <script>
+    // Efeito Matrix
+    const canvas = document.getElementById('matrixCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "アァイイウエオカキクケコサシスセソ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array.from({ length: columns }).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
+
+      drops.forEach((y, i) => {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, y * fontSize);
+
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      });
+    }
+
+    setInterval(drawMatrix, 50);
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
