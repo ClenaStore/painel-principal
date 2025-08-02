@@ -1,191 +1,56 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <title>CB Systems - Início</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CB Systems</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background-color: #0a0a0a;
-      font-family: 'Segoe UI', sans-serif;
+    .container {
+      max-width: 900px;
+      margin: 100px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
       color: #00bfff;
+      margin-bottom: 20px;
     }
-
-    header {
-      background-color: #000;
-      padding: 15px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #00bfff;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
     }
-
-    header img {
-      height: 40px;
-      filter: brightness(0) invert(1);
-      margin-bottom: 10px;
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    nav a {
+    .links a {
+      background: #111;
       color: #00bfff;
+      padding: 20px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 0.95em;
-      cursor: pointer;
+      border: 1px solid #00bfff55;
+      border-radius: 8px;
+      transition: background 0.3s;
     }
-
-    nav a:hover {
-      color: #fff;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 110px auto 40px;
-      padding: 20px;
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2 {
-      color: #00bfff;
-      margin-bottom: 10px;
-    }
-
-    p, li {
-      color: #ccc;
-      font-size: 1em;
-    }
-
-    ul { padding-left: 20px; }
-
-    form input, form textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 4px;
-      background: #1a1a1a;
-      color: #fff;
-    }
-
-    form button {
-      padding: 10px 20px;
-      background-color: #00bfff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    form button:hover {
-      background-color: #009fd9;
-    }
-
-    @media (max-width: 600px) {
-      nav {
-        justify-content: center;
-        margin-top: 10px;
-      }
+    .links a:hover {
+      background: #00bfff22;
     }
   </style>
 </head>
 <body>
-
   <header>
     <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
-    <nav>
-      <a onclick="showSection('inicio')">Início</a>
-      <a onclick="showSection('servicos')">Serviços</a>
-      <a onclick="showSection('orcamento')">Orçamento</a>
-      <a onclick="showSection('sistemas')">Sistemas</a>
-      <a onclick="showSection('duvidas')">Dúvidas</a>
-    </nav>
   </header>
-
   <div class="container">
-
-    <div id="inicio" class="section active">
-      <h2>🏠 Início</h2>
-      <p>Bem-vindo à <strong>CB Systems</strong>, sua parceira em soluções tecnológicas. Atuamos com desenvolvimento de sistemas sob medida, automações empresariais e integração de plataformas como Google Sheets, ClickUp, WhatsApp API e muito mais.</p>
+    <h1>Bem-vindo à CB Systems</h1>
+    <p>Navegue pelos módulos disponíveis abaixo:</p>
+    <div class="links">
+      <a href="servicos.html">🔧 Serviços</a>
+      <a href="orcamento.html">💰 Orçamento</a>
+      <a href="sistemas.html">💼 Sistemas</a>
+      <a href="duvidas.html">❓ Dúvidas</a>
     </div>
-
-    <div id="servicos" class="section">
-      <h2>🛠 Serviços</h2>
-      <ul>
-        <li>✅ Desenvolvimento de sistemas web personalizados</li>
-        <li>✅ Dashboards com dados dinâmicos do Google Sheets</li>
-        <li>✅ Integração com WhatsApp oficial (API Meta)</li>
-        <li>✅ Automatização de orçamentos, reservas, requisições e relatórios</li>
-        <li>✅ Sistemas para delivery, vendas, conciliações e gestão</li>
-      </ul>
-    </div>
-
-    <div id="orcamento" class="section">
-      <h2>💰 Orçamento</h2>
-      <p>Preencha o formulário abaixo que retornaremos com uma proposta personalizada para você.</p>
-      <form onsubmit="event.preventDefault(); alert('Formulário enviado!');">
-        <input type="text" placeholder="Seu nome completo" required />
-        <input type="email" placeholder="Seu e-mail" required />
-        <textarea placeholder="Descreva seu projeto..." rows="5" required></textarea>
-        <button type="submit">Solicitar Orçamento</button>
-      </form>
-    </div>
-
-    <div id="sistemas" class="section">
-      <h2>📦 Sistemas</h2>
-      <p>Confira os sistemas que podemos entregar com agilidade:</p>
-      <ul>
-        <li>📦 Sistema de delivery com WhatsApp e painel administrativo</li>
-        <li>📅 Calendário de reservas com confirmação por e-mail e painel</li>
-        <li>💰 Controle financeiro e metas por empresa</li>
-        <li>📄 Painéis de requisições, controle de estoque e orçamentos</li>
-        <li>📊 Conciliações bancárias e de cartões</li>
-      </ul>
-    </div>
-
-    <div id="duvidas" class="section">
-      <h2>❓ Dúvidas Frequentes</h2>
-      <p><strong>Preciso instalar algo?</strong><br> Não! Todos os nossos sistemas rodam direto no navegador (web-based).</p>
-      <p><strong>Consigo usar no celular?</strong><br> Sim, todos os painéis são 100% responsivos.</p>
-      <p><strong>O que é necessário para começar?</strong><br> Basta preencher o orçamento ou falar conosco pelo WhatsApp.</p>
-      <p><strong>Tem suporte?</strong><br> Sim, damos suporte por WhatsApp e e-mail em horário comercial.</p>
-    </div>
-
   </div>
-
-  <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-  </script>
-
 </body>
 </html>
