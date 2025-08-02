@@ -47,8 +47,8 @@
     }
 
     .container {
-      max-width: 700px;
-      margin: 100px auto 40px;
+      max-width: 900px;
+      margin: 120px auto 40px;
       padding: 20px;
       background: #111;
       border-radius: 10px;
@@ -69,7 +69,7 @@
       color: #fff;
     }
 
-    input, select, textarea {
+    input, textarea {
       width: 100%;
       padding: 10px;
       border-radius: 6px;
@@ -100,6 +100,47 @@
     .btn-enviar:hover {
       background: #00a6d6;
     }
+
+    .select-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .sistema-option {
+      background: #222;
+      border: 2px solid #00bfff44;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      color: #fff;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .sistema-option:hover {
+      background: #00bfff11;
+      box-shadow: 0 0 8px #00bfff88;
+    }
+
+    .sistema-option.selected {
+      border-color: #00bfff;
+      background: #00bfff22;
+    }
+
+    #busca {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 6px;
+      background: #222;
+      color: #fff;
+      width: 100%;
+      border: none;
+      box-shadow: 0 0 5px #00bfff33;
+    }
   </style>
 </head>
 <body>
@@ -126,17 +167,20 @@
       <label for="whatsapp">WhatsApp:</label>
       <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required>
 
-      <label for="sistemas">Selecione os sistemas desejados:</label>
-      <select id="sistemas" name="sistemas" multiple required>
-        <option value="Sistema de Vendas">🛒 Sistema de Vendas</option>
-        <option value="Gestão de Estoque">📦 Gestão de Estoque</option>
-        <option value="Controle Financeiro">💰 Controle Financeiro</option>
-        <option value="Atendimento ao Cliente">📞 Atendimento ao Cliente</option>
-        <option value="Integração com Planilhas">📊 Integração com Planilhas</option>
-        <option value="Disparo de E-mails">📧 Disparo de E-mails</option>
-        <option value="Sistema de Agendamento">📅 Sistema de Agendamento</option>
-        <option value="Painel de Indicadores">📈 Painel de Indicadores</option>
-      </select>
+      <label for="busca">Buscar sistema/serviço:</label>
+      <input type="text" id="busca" placeholder="Digite o nome ou descrição...">
+
+      <label>Selecione os sistemas desejados:</label>
+      <div class="select-grid" id="sistemaContainer">
+        <div class="sistema-option" data-value="Sistema de Vendas">🛒 Sistema de Vendas</div>
+        <div class="sistema-option" data-value="Gestão de Estoque">📦 Gestão de Estoque</div>
+        <div class="sistema-option" data-value="Controle Financeiro">💰 Controle Financeiro</div>
+        <div class="sistema-option" data-value="Atendimento ao Cliente">📞 Atendimento ao Cliente</div>
+        <div class="sistema-option" data-value="Integração com Planilhas">📊 Integração com Planilhas</div>
+        <div class="sistema-option" data-value="Disparo de E-mails">📧 Disparo de E-mails</div>
+        <div class="sistema-option" data-value="Sistema de Agendamento">📅 Sistema de Agendamento</div>
+        <div class="sistema-option" data-value="Painel de Indicadores">📈 Painel de Indicadores</div>
+      </div>
 
       <label for="mensagem">Informações adicionais:</label>
       <textarea id="mensagem" name="mensagem" placeholder="Descreva o que você precisa..."></textarea>
@@ -146,17 +190,33 @@
   </div>
 
   <script>
+    // Alternar seleção
+    document.querySelectorAll('.sistema-option').forEach(div => {
+      div.addEventListener('click', () => {
+        div.classList.toggle('selected');
+      });
+    });
+
     document.getElementById('formOrcamento').addEventListener('submit', function (e) {
       e.preventDefault();
       const nome = document.getElementById('nome').value;
       const email = document.getElementById('email').value;
       const whatsapp = document.getElementById('whatsapp').value;
-      const sistemas = Array.from(document.getElementById('sistemas').selectedOptions).map(opt => opt.text).join(', ');
+      const sistemas = Array.from(document.querySelectorAll('.sistema-option.selected')).map(el => el.dataset.value).join(', ');
       const mensagem = document.getElementById('mensagem').value;
 
       const texto = `Olá! Meu nome é ${nome} (%0AEmail: ${email}) e gostaria de um orçamento para os seguintes sistemas: %0A${sistemas}%0A%0AInformações adicionais:%0A${mensagem}%0A%0AMeu WhatsApp é ${whatsapp}`;
       const url = `https://wa.me/557798253249?text=${encodeURIComponent(texto)}`;
       window.open(url, '_blank');
+    });
+
+    // Filtro de busca
+    document.getElementById('busca').addEventListener('input', function () {
+      const termo = this.value.toLowerCase();
+      document.querySelectorAll('.sistema-option').forEach(op => {
+        const texto = op.textContent.toLowerCase();
+        op.style.display = texto.includes(termo) ? 'block' : 'none';
+      });
     });
   </script>
 </body>
