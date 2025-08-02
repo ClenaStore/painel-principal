@@ -51,6 +51,23 @@
       padding: 20px;
     }
 
+    .banner {
+      width: 100%;
+      max-width: 1900px;
+      height: 300px;
+      margin: 0 auto 40px;
+      background-color: #111;
+      border: 2px solid #00bfff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00bfff55;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00bfff;
+      font-size: 1.5em;
+      text-align: center;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -102,6 +119,10 @@
   </header>
 
   <div class="container">
+    <div class="banner">
+      Seu banner 1900x300px aqui (ou imagem personalizada)
+    </div>
+
     <div class="grid">
       <div class="card" onclick="location.href='#resumo'">
         <span>📈</span>
