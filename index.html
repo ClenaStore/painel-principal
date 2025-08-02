@@ -72,6 +72,46 @@
       border-radius: 12px;
       box-shadow: 0 0 20px #00bfff33;
       margin-bottom: 30px;
+      position: relative;
+    }
+
+    .banner-cards {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .banner-card {
+      background-color: #000000cc;
+      border: 1px dashed #00bfff;
+      border-radius: 10px;
+      padding: 15px 10px;
+      width: 110px;
+      text-align: center;
+      color: #fff;
+      transition: 0.3s;
+      box-shadow: 0 0 10px #00bfff44;
+    }
+
+    .banner-card:hover {
+      background-color: #00bfff22;
+      transform: scale(1.05);
+    }
+
+    .banner-card span {
+      font-size: 1.6em;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .banner-card .card-title {
+      font-size: 0.95em;
+      font-weight: bold;
+      color: #00bfff;
     }
 
     h1 {
@@ -143,7 +183,17 @@
       }
 
       .banner {
-        height: 130px;
+        height: 160px;
+      }
+
+      .banner-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .banner-card {
+        width: 100px;
+        margin-bottom: 10px;
       }
 
       .card span {
@@ -171,7 +221,28 @@
   </header>
 
   <div class="container">
-    <div class="banner"></div>
+    <div class="banner">
+      <div class="banner-cards">
+        <a href="sistemas.html">
+          <div class="banner-card">
+            <span>🖥️</span>
+            <div class="card-title">Sistemas</div>
+          </div>
+        </a>
+        <a href="servicos.html">
+          <div class="banner-card">
+            <span>⚙️</span>
+            <div class="card-title">Painéis</div>
+          </div>
+        </a>
+        <a href="orcamento.html">
+          <div class="banner-card">
+            <span>📊</span>
+            <div class="card-title">Orçamento</div>
+          </div>
+        </a>
+      </div>
+    </div>
 
     <h1>Bem-vindo à CB Systems</h1>
     <p>Navegue pelos módulos disponíveis abaixo:</p>
