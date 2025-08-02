@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CB Systems - Orçamento</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #00bfff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #000;
+      border-bottom: 1px solid #00bfff;
+    }
+
+    header img {
+      height: 40px;
+      filter: brightness(0) invert(1);
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 100px auto 40px;
+      padding: 20px;
+      background: #111;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00bfff44;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00bfff;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      background: #222;
+      color: #fff;
+      box-shadow: 0 0 5px #00bfff33;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .btn-enviar {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background: #00bfff;
+      color: #000;
+      font-weight: bold;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn-enviar:hover {
+      background: #00a6d6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="orcamento.html">Orçamento</a>
+      <a href="sistemas.html">Sistemas</a>
+      <a href="duvidas.html">Dúvidas</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Solicite seu Orçamento</h1>
+    <form id="formOrcamento">
+      <label for="nome">Nome completo:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="whatsapp">WhatsApp:</label>
+      <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required>
+
+      <label for="sistemas">Selecione os sistemas desejados:</label>
+      <select id="sistemas" name="sistemas" multiple required>
+        <option value="Sistema de Vendas">🛒 Sistema de Vendas</option>
+        <option value="Gestão de Estoque">📦 Gestão de Estoque</option>
+        <option value="Controle Financeiro">💰 Controle Financeiro</option>
+        <option value="Atendimento ao Cliente">📞 Atendimento ao Cliente</option>
+        <option value="Integração com Planilhas">📊 Integração com Planilhas</option>
+        <option value="Disparo de E-mails">📧 Disparo de E-mails</option>
+        <option value="Sistema de Agendamento">📅 Sistema de Agendamento</option>
+        <option value="Painel de Indicadores">📈 Painel de Indicadores</option>
+      </select>
+
+      <label for="mensagem">Informações adicionais:</label>
+      <textarea id="mensagem" name="mensagem" placeholder="Descreva o que você precisa..."></textarea>
+
+      <button type="submit" class="btn-enviar">Enviar Orçamento via WhatsApp</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('formOrcamento').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const whatsapp = document.getElementById('whatsapp').value;
+      const sistemas = Array.from(document.getElementById('sistemas').selectedOptions).map(opt => opt.text).join(', ');
+      const mensagem = document.getElementById('mensagem').value;
+
+      const texto = `Olá! Meu nome é ${nome} (%0AEmail: ${email}) e gostaria de um orçamento para os seguintes sistemas: %0A${sistemas}%0A%0AInformações adicionais:%0A${mensagem}%0A%0AMeu WhatsApp é ${whatsapp}`;
+      const url = `https://wa.me/557798253249?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>
