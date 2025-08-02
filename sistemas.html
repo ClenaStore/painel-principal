@@ -12,7 +12,6 @@
       margin: 0;
       padding: 0;
     }
-
     header {
       position: fixed;
       top: 0;
@@ -26,34 +25,28 @@
       background-color: #000;
       border-bottom: 1px solid #00bfff;
     }
-
     header img {
       height: 50px;
       filter: brightness(0) invert(1);
     }
-
     nav {
       display: flex;
       gap: 20px;
     }
-
     nav a {
       color: #00bfff;
       text-decoration: none;
       font-weight: bold;
     }
-
     nav a:hover {
       color: #fff;
     }
-
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 120px 20px 40px;
       text-align: center;
     }
-
     .banner {
       width: 100%;
       height: 300px;
@@ -65,13 +58,11 @@
       box-shadow: 0 0 20px #00bfff33;
       margin-bottom: 40px;
     }
-
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
     }
-
     .card {
       background-color: #111;
       border: 1px solid #00bfff33;
@@ -84,26 +75,21 @@
       cursor: pointer;
       text-decoration: none;
     }
-
     .card:hover {
       background-color: #00bfff11;
       box-shadow: 0 0 20px #00bfff99;
       transform: scale(1.03);
     }
-
     .card span {
       font-size: 2.2em;
       display: block;
       margin-bottom: 10px;
     }
-
     .card-title {
       font-size: 1.1em;
       font-weight: bold;
       color: #00bfff;
     }
-
-    /* Modal (popup) */
     .modal {
       display: none;
       position: fixed;
@@ -116,7 +102,6 @@
       justify-content: center;
       align-items: center;
     }
-
     .modal-content {
       background: #111;
       padding: 20px;
@@ -128,15 +113,12 @@
       text-align: left;
       position: relative;
     }
-
     .modal-content iframe {
       width: 100%;
       height: 300px;
       border: none;
       margin-bottom: 15px;
-      display: none;
     }
-
     .close {
       color: #fff;
       position: absolute;
@@ -145,11 +127,9 @@
       font-size: 28px;
       cursor: pointer;
     }
-
     .close:hover {
       color: #00bfff;
     }
-
     .btn-orcamento {
       background: #00bfff;
       color: #000;
@@ -160,8 +140,9 @@
       font-size: 1em;
       cursor: pointer;
       margin-top: 15px;
+      text-decoration: none;
+      display: inline-block;
     }
-
     .btn-orcamento:hover {
       background: #00a6d6;
     }
@@ -188,38 +169,38 @@
       <div class="card" onclick="abrirPopup('Sistema de Vendas', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Gerencie suas vendas de forma simples e eficiente.')">
         <span>🛒</span><div class="card-title">Sistema de Vendas</div>
       </div>
-      <div class="card" onclick="abrirPopup('Gestão de Estoque', '', 'Controle seu estoque em tempo real com alertas inteligentes.')">
-        <span>🏦</span><div class="card-title">Gestão de Estoque</div>
+      <div class="card" onclick="abrirPopup('Gestão de Estoque', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Controle seu estoque com alertas automáticos.')">
+        <span>📦</span><div class="card-title">Gestão de Estoque</div>
       </div>
-      <div class="card" onclick="abrirPopup('Controle Financeiro', '', 'Visualize entradas e saídas com gráficos e relatórios.')">
-        <span>💸</span><div class="card-title">Controle Financeiro</div>
+      <div class="card" onclick="abrirPopup('Controle Financeiro', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualize entradas e saídas com gráficos.')">
+        <span>💰</span><div class="card-title">Controle Financeiro</div>
       </div>
-      <div class="card" onclick="abrirPopup('Atendimento ao Cliente', '', 'Integração com WhatsApp, histórico de contato e mais.')">
-        <span>💬</span><div class="card-title">Atendimento ao Cliente</div>
+      <div class="card" onclick="abrirPopup('Atendimento ao Cliente', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'WhatsApp, histórico de contato e mais.')">
+        <span>📞</span><div class="card-title">Atendimento ao Cliente</div>
       </div>
-      <div class="card" onclick="abrirPopup('Integração com Planilhas', '', 'Conecte com Google Sheets para automações.')">
+      <div class="card" onclick="abrirPopup('Integração com Planilhas', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Google Sheets e automações.')">
         <span>📊</span><div class="card-title">Integração com Planilhas</div>
       </div>
-      <div class="card" onclick="abrirPopup('Disparo de E-mails', '', 'Envio de mensagens automáticas com personalização.')">
+      <div class="card" onclick="abrirPopup('Disparo de E-mails', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Mensagens automáticas e personalizadas.')">
         <span>📧</span><div class="card-title">Disparo de E-mails</div>
       </div>
-      <div class="card" onclick="abrirPopup('Sistema de Agendamento', '', 'Agendamentos online integrados com calendário.')">
+      <div class="card" onclick="abrirPopup('Sistema de Agendamento', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Integração com calendário.')">
         <span>📅</span><div class="card-title">Sistema de Agendamento</div>
       </div>
-      <div class="card" onclick="abrirPopup('Painel de Indicadores', '', 'Acompanhe indicadores de performance em tempo real.')">
+      <div class="card" onclick="abrirPopup('Painel de Indicadores', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Indicadores em tempo real.')">
         <span>📈</span><div class="card-title">Painel de Indicadores</div>
       </div>
     </div>
   </div>
 
-  <!-- Popup Modal -->
+  <!-- Modal -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="fecharPopup()">&times;</span>
       <h2 id="popupTitulo">Título</h2>
       <iframe id="popupVideo" allowfullscreen></iframe>
       <p id="popupDescricao">Descrição</p>
-      <a href="orcamento.html"><button class="btn-orcamento">Solicitar Orçamento</button></a>
+      <a class="btn-orcamento" id="botaoWhatsApp" target="_blank">Solicitar Orçamento</a>
     </div>
   </div>
 
@@ -229,13 +210,10 @@
       document.getElementById('popupDescricao').textContent = descricao;
 
       const iframe = document.getElementById('popupVideo');
-      if (videoUrl) {
-        iframe.src = videoUrl;
-        iframe.style.display = 'block';
-      } else {
-        iframe.src = '';
-        iframe.style.display = 'none';
-      }
+      iframe.src = videoUrl;
+
+      const msg = `Olá! Gostaria de saber mais sobre o sistema: ${titulo}`;
+      document.getElementById('botaoWhatsApp').href = `https://wa.me/557798253249?text=${encodeURIComponent(msg)}`;
 
       document.getElementById('modal').style.display = 'flex';
     }
@@ -246,8 +224,7 @@
     }
 
     window.onclick = function(event) {
-      const modal = document.getElementById('modal');
-      if (event.target === modal) {
+      if (event.target === document.getElementById('modal')) {
         fecharPopup();
       }
     };
