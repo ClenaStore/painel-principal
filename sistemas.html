@@ -1,1 +1,118 @@
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>CB Systems - Serviços</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #00bfff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #000;
+      border-bottom: 1px solid #00bfff;
+    }
+    header img {
+      height: 50px;
+      filter: brightness(0) invert(1);
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 100px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .banner {
+      width: 100%;
+      height: 300px;
+      background-image: url('banner.png');
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #00bfff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00bfff33;
+      margin-bottom: 40px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: #111;
+      border: 1px solid #00bfff33;
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      color: #fff;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px #00bfff22;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .card:hover {
+      background-color: #00bfff11;
+      box-shadow: 0 0 20px #00bfff99;
+      transform: scale(1.03);
+    }
+    .card span {
+      font-size: 2.2em;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .card-title {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #00bfff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="orcamento.html">Orçamento</a>
+      <a href="sistemas.html">Sistemas</a>
+      <a href="duvidas.html">Dúvidas</a>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="banner"></div>
+    <h1>Serviços da CB Systems</h1>
+    <p>Explore os principais serviços oferecidos por nossa equipe:</p>
+    <div class="cards">
+      <div class="card"><span>🔹</span><div class="card-title">Sistema de Vendas</div></div>
+      <div class="card"><span>🏦</span><div class="card-title">Gestão de Estoque</div></div>
+      <div class="card"><span>💸</span><div class="card-title">Controle Financeiro</div></div>
+      <div class="card"><span>💌</span><div class="card-title">Atendimento ao Cliente</div></div>
+      <div class="card"><span>💻</span><div class="card-title">Integração com Planilhas</div></div>
+      <div class="card"><span>📧</span><div class="card-title">Disparo de E-mails</div></div>
+      <div class="card"><span>🚀</span><div class="card-title">Sistema de Agendamento</div></div>
+      <div class="card"><span>📈</span><div class="card-title">Painel de Indicadores</div></div>
+    </div>
+  </div>
+</body>
+</html>
