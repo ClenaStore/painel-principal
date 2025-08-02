@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>CB Systems - Sistemas</title>
+  <title>CB Systems - Serviços</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -104,68 +104,6 @@
       color: #00bfff;
     }
 
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .modal-content {
-      background: #111;
-      padding: 15px;
-      border-radius: 10px;
-      width: 100%;
-      max-width: 500px;
-      color: white;
-      box-shadow: 0 0 30px #00bfff88;
-      text-align: left;
-      position: relative;
-    }
-
-    .modal-content iframe {
-      width: 100%;
-      height: 250px;
-      border: none;
-      margin-bottom: 15px;
-    }
-
-    .close {
-      color: #fff;
-      position: absolute;
-      top: 8px;
-      right: 15px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: #00bfff;
-    }
-
-    .btn-orcamento {
-      background: #00bfff;
-      color: #000;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      margin-top: 10px;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn-orcamento:hover {
-      background: #00a6d6;
-    }
-
     @media (max-width: 600px) {
       .container {
         padding-top: 120px;
@@ -210,66 +148,49 @@
 
   <div class="container">
     <div class="banner"></div>
-    <h1>Sistemas</h1>
-    <p>Explore os principais sistemas desenvolvidos:</p>
+    <h1>Serviços</h1>
+    <p>Selecione os serviços que deseja incluir no seu projeto:</p>
 
     <div class="cards">
-      <div class="card" onclick="abrirPopup('Sistema de Vendas', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Gerencie suas vendas de forma simples e eficiente.')">
-        <span>🛒</span><div class="card-title">Sistema de Vendas</div>
+      <div class="card" onclick="toggleSelecionado(this)">
+        <span>🌐</span><div class="card-title">Criação de Sites</div>
       </div>
-      <div class="card" onclick="abrirPopup('Gestão de Estoque', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Controle seu estoque com alertas automáticos.')">
-        <span>📦</span><div class="card-title">Gestão de Estoque</div>
+      <div class="card" onclick="toggleSelecionado(this)">
+        <span>📱</span><div class="card-title">Aplicativos</div>
       </div>
-      <div class="card" onclick="abrirPopup('Controle Financeiro', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualize entradas e saídas com gráficos.')">
-        <span>💰</span><div class="card-title">Controle Financeiro</div>
+      <div class="card" onclick="toggleSelecionado(this)">
+        <span>📊</span><div class="card-title">Painéis e Dashboards</div>
       </div>
-      <div class="card" onclick="abrirPopup('Atendimento ao Cliente', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'WhatsApp, histórico de contato e mais.')">
-        <span>📞</span><div class="card-title">Atendimento ao Cliente</div>
+      <div class="card" onclick="toggleSelecionado(this)">
+        <span>📦</span><div class="card-title">Sistemas Personalizados</div>
       </div>
-      <div class="card" onclick="abrirPopup('Integração com Planilhas', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Google Sheets e automações.')">
-        <span>📊</span><div class="card-title">Integração com Planilhas</div>
+      <div class="card" onclick="toggleSelecionado(this)">
+        <span>⚙️</span><div class="card-title">Automação com Planilhas</div>
       </div>
-      <div class="card" onclick="abrirPopup('Disparo de E-mails', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Mensagens automáticas e personalizadas.')">
-        <span>📧</span><div class="card-title">Disparo de E-mails</div>
+      <div class="card" onclick="toggleSelecionado(this)">
+        <span>✉️</span><div class="card-title">Disparo de Mensagens</div>
       </div>
-      <div class="card" onclick="abrirPopup('Sistema de Agendamento', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Integração com calendário.')">
-        <span>📅</span><div class="card-title">Sistema de Agendamento</div>
+      <div class="card" onclick="toggleSelecionado(this)">
+        <span>💻</span><div class="card-title">Integrações com APIs</div>
       </div>
-      <div class="card" onclick="abrirPopup('Painel de Indicadores', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Indicadores em tempo real.')">
-        <span>📈</span><div class="card-title">Painel de Indicadores</div>
+      <div class="card" onclick="toggleSelecionado(this)">
+        <span>📥</span><div class="card-title">Formulários de Cadastro</div>
       </div>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="fecharPopup()">&times;</span>
-      <h2 id="popupTitulo">Título</h2>
-      <iframe id="popupVideo" allowfullscreen></iframe>
-      <p id="popupDescricao">Descrição</p>
-      <a class="btn-orcamento" id="botaoWhatsApp" target="_blank">Solicitar Orçamento</a>
     </div>
   </div>
 
   <script>
-    function abrirPopup(titulo, videoUrl, descricao) {
-      document.getElementById('popupTitulo').textContent = titulo;
-      document.getElementById('popupDescricao').textContent = descricao;
-      document.getElementById('popupVideo').src = videoUrl;
-      document.getElementById('botaoWhatsApp').href =
-        `https://wa.me/557798253249?text=${encodeURIComponent('Olá! Gostaria de saber mais sobre o sistema: ' + titulo)}`;
-      document.getElementById('modal').style.display = 'flex';
+    function toggleSelecionado(card) {
+      card.classList.toggle('selecionado');
     }
-
-    function fecharPopup() {
-      document.getElementById('modal').style.display = 'none';
-      document.getElementById('popupVideo').src = '';
-    }
-
-    window.onclick = function (event) {
-      if (event.target === document.getElementById('modal')) fecharPopup();
-    };
   </script>
+
+  <style>
+    .selecionado {
+      background-color: #003d66 !important;
+      border: 2px solid #00bfff;
+      box-shadow: 0 0 20px #00bfff;
+    }
+  </style>
 </body>
 </html>
