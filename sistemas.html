@@ -14,6 +14,11 @@
     }
 
     header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
       padding: 15px 30px;
       display: flex;
       align-items: center;
@@ -45,7 +50,7 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 120px 20px 40px; /* Espaço para o header fixo */
       text-align: center;
     }
 
@@ -102,7 +107,7 @@
     .modal {
       display: none;
       position: fixed;
-      z-index: 999;
+      z-index: 9999;
       left: 0;
       top: 0;
       width: 100%;
