@@ -12,124 +12,142 @@
       margin: 0;
       padding: 0;
     }
+
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
-      padding: 15px 30px;
+      padding: 15px 20px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       background-color: #000;
       border-bottom: 1px solid #00bfff;
     }
+
     header img {
-      height: 50px;
+      height: 40px;
       filter: brightness(0) invert(1);
     }
+
     nav {
       display: flex;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
     }
+
     nav a {
       color: #00bfff;
       text-decoration: none;
       font-weight: bold;
+      font-size: 0.95em;
     }
+
     nav a:hover {
       color: #fff;
     }
+
     .container {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 120px 20px 40px;
+      padding: 100px 15px 40px;
       text-align: center;
     }
+
     .banner {
       width: 100%;
-      height: 300px;
+      height: 220px;
       background-image: url('banner.png');
       background-size: cover;
       background-position: center;
       border: 2px solid #00bfff;
       border-radius: 12px;
       box-shadow: 0 0 20px #00bfff33;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
+
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
     }
+
     .card {
       background-color: #111;
       border: 1px solid #00bfff33;
       border-radius: 12px;
-      padding: 30px 20px;
+      padding: 20px 12px;
       text-align: center;
       color: #fff;
       transition: all 0.3s ease;
-      box-shadow: 0 0 15px #00bfff22;
+      box-shadow: 0 0 10px #00bfff22;
       cursor: pointer;
-      text-decoration: none;
     }
+
     .card:hover {
       background-color: #00bfff11;
       box-shadow: 0 0 20px #00bfff99;
       transform: scale(1.03);
     }
+
     .card span {
-      font-size: 2.2em;
+      font-size: 1.8em;
       display: block;
       margin-bottom: 10px;
     }
+
     .card-title {
-      font-size: 1.1em;
+      font-size: 1em;
       font-weight: bold;
       color: #00bfff;
     }
+
     .modal {
       display: none;
       position: fixed;
       z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.85);
       justify-content: center;
       align-items: center;
+      padding: 20px;
     }
+
     .modal-content {
       background: #111;
-      padding: 20px;
+      padding: 15px;
       border-radius: 10px;
-      width: 90%;
-      max-width: 700px;
+      width: 100%;
+      max-width: 500px;
       color: white;
       box-shadow: 0 0 30px #00bfff88;
       text-align: left;
       position: relative;
     }
+
     .modal-content iframe {
       width: 100%;
-      height: 300px;
+      height: 250px;
       border: none;
       margin-bottom: 15px;
     }
+
     .close {
       color: #fff;
       position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 28px;
+      top: 8px;
+      right: 15px;
+      font-size: 24px;
       cursor: pointer;
     }
+
     .close:hover {
       color: #00bfff;
     }
+
     .btn-orcamento {
       background: #00bfff;
       color: #000;
@@ -139,12 +157,42 @@
       font-weight: bold;
       font-size: 1em;
       cursor: pointer;
-      margin-top: 15px;
+      margin-top: 10px;
       text-decoration: none;
       display: inline-block;
     }
+
     .btn-orcamento:hover {
       background: #00a6d6;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding-top: 120px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+      }
+
+      .banner {
+        height: 150px;
+      }
+
+      .card span {
+        font-size: 1.5em;
+      }
+
+      .card-title {
+        font-size: 0.95em;
+      }
     }
   </style>
 </head>
@@ -208,13 +256,9 @@
     function abrirPopup(titulo, videoUrl, descricao) {
       document.getElementById('popupTitulo').textContent = titulo;
       document.getElementById('popupDescricao').textContent = descricao;
-
-      const iframe = document.getElementById('popupVideo');
-      iframe.src = videoUrl;
-
-      const msg = `Olá! Gostaria de saber mais sobre o sistema: ${titulo}`;
-      document.getElementById('botaoWhatsApp').href = `https://wa.me/557798253249?text=${encodeURIComponent(msg)}`;
-
+      document.getElementById('popupVideo').src = videoUrl;
+      document.getElementById('botaoWhatsApp').href =
+        `https://wa.me/557798253249?text=${encodeURIComponent('Olá! Gostaria de saber mais sobre o sistema: ' + titulo)}`;
       document.getElementById('modal').style.display = 'flex';
     }
 
@@ -223,10 +267,8 @@
       document.getElementById('popupVideo').src = '';
     }
 
-    window.onclick = function(event) {
-      if (event.target === document.getElementById('modal')) {
-        fecharPopup();
-      }
+    window.onclick = function (event) {
+      if (event.target === document.getElementById('modal')) fecharPopup();
     };
   </script>
 </body>
