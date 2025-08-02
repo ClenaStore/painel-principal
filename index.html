@@ -26,6 +26,11 @@
       border-bottom: 1px solid #00bfff;
     }
 
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
     header img {
       height: 40px;
       filter: brightness(0) invert(1);
@@ -34,7 +39,8 @@
     nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 15px;
+      align-items: center;
     }
 
     nav a {
@@ -115,6 +121,11 @@
       color: #00bfff;
     }
 
+    .card a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     @media (max-width: 600px) {
       .container {
         padding-top: 120px;
@@ -128,7 +139,7 @@
       nav {
         width: 100%;
         justify-content: flex-start;
-        gap: 10px;
+        padding-top: 10px;
       }
 
       .banner {
@@ -147,7 +158,9 @@
 </head>
 <body>
   <header>
-    <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
+    <div class="logo">
+      <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
+    </div>
     <nav>
       <a href="index.html">Início</a>
       <a href="servicos.html">Serviços</a>
@@ -164,10 +177,18 @@
     <p>Navegue pelos módulos disponíveis abaixo:</p>
 
     <div class="cards">
-      <div class="card"><span>🖥️</span><div class="card-title">Sistema Personalizado</div></div>
-      <div class="card"><span>⚙️</span><div class="card-title">Funcionalidades Avançadas</div></div>
-      <div class="card"><span>📊</span><div class="card-title">Painéis e Dashboards</div></div>
-      <div class="card"><span>📁</span><div class="card-title">Gerenciamento de Dados</div></div>
+      <a href="sistemas.html">
+        <div class="card"><span>🖥️</span><div class="card-title">Sistemas Personalizados</div></div>
+      </a>
+      <a href="servicos.html">
+        <div class="card"><span>⚙️</span><div class="card-title">Criação de Painéis</div></div>
+      </a>
+      <a href="orcamento.html">
+        <div class="card"><span>📊</span><div class="card-title">Solicitar Orçamento</div></div>
+      </a>
+      <a href="duvidas.html">
+        <div class="card"><span>❓</span><div class="card-title">Dúvidas Frequentes</div></div>
+      </a>
     </div>
   </div>
 </body>
