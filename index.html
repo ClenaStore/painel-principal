@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>CB Systems - Início</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <style>
     body {
       background: #0a0a0a;
@@ -15,12 +15,11 @@
 
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 1000;
-      padding: 15px 30px;
+      padding: 15px 20px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       background-color: #000;
@@ -28,20 +27,21 @@
     }
 
     header img {
-      height: 50px;
+      height: 40px;
       filter: brightness(0) invert(1);
     }
 
     nav {
       display: flex;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 10px;
     }
 
     nav a {
       color: #00bfff;
       text-decoration: none;
       font-weight: bold;
+      font-size: 0.95em;
     }
 
     nav a:hover {
@@ -51,20 +51,21 @@
     .container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 120px 20px 40px;
+      padding: 100px 20px 40px;
       text-align: center;
     }
 
     .banner {
       width: 100%;
-      height: 300px;
+      height: 200px;
       background-image: url('https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png');
-      background-size: cover;
+      background-size: contain;
       background-position: center;
+      background-repeat: no-repeat;
       border: 2px solid #00bfff;
       border-radius: 12px;
       box-shadow: 0 0 20px #00bfff33;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     h1 {
@@ -72,23 +73,28 @@
       margin: 20px 0 10px;
     }
 
+    p {
+      font-size: 1em;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 20px;
+      gap: 16px;
     }
 
     .card {
       background-color: #111;
       border: 1px solid #00bfff33;
       border-radius: 12px;
-      padding: 25px 15px;
+      padding: 20px 12px;
       text-align: center;
       color: #fff;
       transition: all 0.3s ease;
-      box-shadow: 0 0 15px #00bfff22;
+      box-shadow: 0 0 10px #00bfff22;
       cursor: pointer;
-      text-decoration: none;
     }
 
     .card:hover {
@@ -98,9 +104,9 @@
     }
 
     .card span {
-      font-size: 2em;
+      font-size: 1.8em;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .card-title {
@@ -109,28 +115,32 @@
       color: #00bfff;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       .container {
-        padding: 100px 10px 40px;
-      }
-
-      .card {
-        padding: 20px 10px;
+        padding-top: 120px;
       }
 
       header {
         flex-direction: column;
         align-items: flex-start;
-        padding: 15px 15px;
       }
 
       nav {
-        margin-top: 10px;
+        width: 100%;
+        justify-content: flex-start;
         gap: 10px;
       }
 
-      header img {
-        height: 40px;
+      .banner {
+        height: 130px;
+      }
+
+      .card span {
+        font-size: 1.5em;
+      }
+
+      .card-title {
+        font-size: 0.95em;
       }
     }
   </style>
@@ -154,22 +164,10 @@
     <p>Navegue pelos módulos disponíveis abaixo:</p>
 
     <div class="cards">
-      <div class="card">
-        <span>🖥️</span>
-        <div class="card-title">Seu conteúdo personalizado aqui</div>
-      </div>
-      <div class="card">
-        <span>⚙️</span>
-        <div class="card-title">Outro card com funcionalidade</div>
-      </div>
-      <div class="card">
-        <span>📊</span>
-        <div class="card-title">Dashboard ou destaque</div>
-      </div>
-      <div class="card">
-        <span>📁</span>
-        <div class="card-title">Exibição futura ou botão</div>
-      </div>
+      <div class="card"><span>🖥️</span><div class="card-title">Sistema Personalizado</div></div>
+      <div class="card"><span>⚙️</span><div class="card-title">Funcionalidades Avançadas</div></div>
+      <div class="card"><span>📊</span><div class="card-title">Painéis e Dashboards</div></div>
+      <div class="card"><span>📁</span><div class="card-title">Gerenciamento de Dados</div></div>
     </div>
   </div>
 </body>
