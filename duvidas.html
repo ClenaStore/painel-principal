@@ -1,1 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>CB Systems - Dúvidas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #00bfff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #000;
+      border-bottom: 1px solid #00bfff;
+    }
+
+    header img {
+      height: 50px;
+      filter: brightness(0) invert(1);
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 120px 20px 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00bfff;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    p.sub {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #ccc;
+    }
+
+    .faq {
+      background-color: #111;
+      border: 1px solid #00bfff22;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #00bfff22;
+    }
+
+    .faq summary {
+      padding: 15px 20px;
+      cursor: pointer;
+      list-style: none;
+      font-weight: bold;
+      color: #00bfff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .faq[open] summary {
+      background-color: #00bfff11;
+    }
+
+    .faq p {
+      padding: 0 20px 20px;
+      color: #fff;
+      margin: 0;
+    }
+
+    .faq-icon {
+      font-size: 1.2em;
+      margin-right: 10px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="orcamento.html">Orçamento</a>
+      <a href="sistemas.html">Sistemas</a>
+      <a href="duvidas.html">Dúvidas</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>❓ Dúvidas Frequentes</h1>
+    <p class="sub">Encontre abaixo respostas para as perguntas mais comuns sobre nossos sistemas e serviços.</p>
+
+    <details class="faq">
+      <summary><span class="faq-icon">💡</span>Como faço para contratar um sistema?</summary>
+      <p>Basta acessar a página de <strong>Orçamento</strong>, preencher o formulário e nossa equipe entrará em contato rapidamente para entender suas necessidades.</p>
+    </details>
+
+    <details class="faq">
+      <summary><span class="faq-icon">🔒</span>É seguro armazenar meus dados nos sistemas CB Systems?</summary>
+      <p>Sim, todos os dados são armazenados com criptografia e backup automático. Garantimos segurança e confidencialidade total.</p>
+    </details>
+
+    <details class="faq">
+      <summary><span class="faq-icon">📱</span>Os sistemas funcionam no celular?</summary>
+      <p>Sim! Todos os sistemas são responsivos, ou seja, funcionam perfeitamente em celulares, tablets e computadores.</p>
+    </details>
+
+    <details class="faq">
+      <summary><span class="faq-icon">💰</span>Quanto custa um sistema personalizado?</summary>
+      <p>O valor varia conforme a complexidade. Você pode solicitar um orçamento sem compromisso clicando em <a href="orcamento.html" style="color: #00bfff;">Orçamento</a>.</p>
+    </details>
+
+    <details class="faq">
+      <summary><span class="faq-icon">🧾</span>Vocês emitem nota fiscal?</summary>
+      <p>Sim, todas as contratações são formalizadas com emissão de nota fiscal e contrato de serviço digital.</p>
+    </details>
+
+    <details class="faq">
+      <summary><span class="faq-icon">🛠️</span>É possível integrar com Google Sheets ou WhatsApp?</summary>
+      <p>Sim! Desenvolvemos integrações com Google Sheets, WhatsApp, e outras ferramentas como ClickUp e n8n. Consulte-nos para saber mais.</p>
+    </details>
+
+    <details class="faq">
+      <summary><span class="faq-icon">⏱️</span>Em quanto tempo meu sistema fica pronto?</summary>
+      <p>Após entender suas necessidades, o prazo médio de entrega é de 5 a 10 dias úteis, dependendo da complexidade.</p>
+    </details>
+  </div>
+</body>
+</html>
