@@ -190,7 +190,6 @@
   </div>
 
   <script>
-    // Alternar seleção
     document.querySelectorAll('.sistema-option').forEach(div => {
       div.addEventListener('click', () => {
         div.classList.toggle('selected');
@@ -202,15 +201,16 @@
       const nome = document.getElementById('nome').value;
       const email = document.getElementById('email').value;
       const whatsapp = document.getElementById('whatsapp').value;
-      const sistemas = Array.from(document.querySelectorAll('.sistema-option.selected')).map(el => el.dataset.value).join(', ');
+      const sistemasSelecionados = Array.from(document.querySelectorAll('.sistema-option.selected')).map(el => el.dataset.value);
+      const sistemasFormatados = sistemasSelecionados.map(s => `🔹 ${s}`).join("\n");
       const mensagem = document.getElementById('mensagem').value;
 
-      const texto = `Olá! Meu nome é ${nome} (%0AEmail: ${email}) e gostaria de um orçamento para os seguintes sistemas: %0A${sistemas}%0A%0AInformações adicionais:%0A${mensagem}%0A%0AMeu WhatsApp é ${whatsapp}`;
+      const texto = `👋 Olá! Meu nome é *${nome}*\n📧 Email: ${email}\n📱 WhatsApp: ${whatsapp}\n\n💻 Gostaria de um orçamento para os seguintes sistemas:\n${sistemasFormatados}\n\n📝 Informações adicionais:\n${mensagem}`;
+
       const url = `https://wa.me/557798253249?text=${encodeURIComponent(texto)}`;
       window.open(url, '_blank');
     });
 
-    // Filtro de busca
     document.getElementById('busca').addEventListener('input', function () {
       const termo = this.value.toLowerCase();
       document.querySelectorAll('.sistema-option').forEach(op => {
