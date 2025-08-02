@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>CB Systems - sistemas</title>
+  <title>CB Systems - Sistemas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -50,7 +50,7 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 120px 20px 40px; /* Espaço para o header fixo */
+      padding: 120px 20px 40px;
       text-align: center;
     }
 
@@ -103,7 +103,7 @@
       color: #00bfff;
     }
 
-    /* Popup modal */
+    /* Modal (popup) */
     .modal {
       display: none;
       position: fixed;
@@ -126,6 +126,7 @@
       color: white;
       box-shadow: 0 0 30px #00bfff88;
       text-align: left;
+      position: relative;
     }
 
     .modal-content iframe {
@@ -133,17 +134,36 @@
       height: 300px;
       border: none;
       margin-bottom: 15px;
+      display: none;
     }
 
     .close {
       color: #fff;
-      float: right;
+      position: absolute;
+      top: 10px;
+      right: 20px;
       font-size: 28px;
       cursor: pointer;
     }
 
     .close:hover {
       color: #00bfff;
+    }
+
+    .btn-orcamento {
+      background: #00bfff;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .btn-orcamento:hover {
+      background: #00a6d6;
     }
   </style>
 </head>
@@ -161,8 +181,8 @@
 
   <div class="container">
     <div class="banner"></div>
-    <h1>sistemas</h1>
-    <p>Explore os principais serviços oferecidos por nossa equipe:</p>
+    <h1>Sistemas</h1>
+    <p>Explore os principais sistemas desenvolvidos:</p>
 
     <div class="cards">
       <div class="card" onclick="abrirPopup('Sistema de Vendas', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Gerencie suas vendas de forma simples e eficiente.')">
@@ -192,13 +212,14 @@
     </div>
   </div>
 
-  <!-- Modal -->
+  <!-- Popup Modal -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="fecharPopup()">&times;</span>
       <h2 id="popupTitulo">Título</h2>
-      <iframe id="popupVideo" src="" allowfullscreen></iframe>
+      <iframe id="popupVideo" allowfullscreen></iframe>
       <p id="popupDescricao">Descrição</p>
+      <a href="orcamento.html"><button class="btn-orcamento">Solicitar Orçamento</button></a>
     </div>
   </div>
 
@@ -207,11 +228,13 @@
       document.getElementById('popupTitulo').textContent = titulo;
       document.getElementById('popupDescricao').textContent = descricao;
 
+      const iframe = document.getElementById('popupVideo');
       if (videoUrl) {
-        document.getElementById('popupVideo').src = videoUrl;
-        document.getElementById('popupVideo').style.display = 'block';
+        iframe.src = videoUrl;
+        iframe.style.display = 'block';
       } else {
-        document.getElementById('popupVideo').style.display = 'none';
+        iframe.src = '';
+        iframe.style.display = 'none';
       }
 
       document.getElementById('modal').style.display = 'flex';
@@ -222,7 +245,6 @@
       document.getElementById('popupVideo').src = '';
     }
 
-    // Fecha o popup clicando fora
     window.onclick = function(event) {
       const modal = document.getElementById('modal');
       if (event.target === modal) {
