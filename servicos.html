@@ -1,74 +1,142 @@
-<!-- sistemas.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Sistemas - CB Systems</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <title>CB Systems - Serviços</title>
   <style>
-    .cards {
+    body {
+      background: #0a0a0a;
+      color: #00bfff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #000;
+      border-bottom: 1px solid #00bfff;
+      flex-wrap: wrap;
+    }
+
+    header img {
+      height: 40px;
+      filter: brightness(0) invert(1);
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    nav a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 120px auto 40px;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00bfff;
+      font-size: 1.8em;
+    }
+
+    .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
+
     .card {
       background: #111;
-      color: #fff;
-      border: 1px solid #00bfff55;
       border-radius: 10px;
       overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 0 15px #00bfff22;
-      transition: transform 0.3s;
+      box-shadow: 0 0 10px #00bfff44;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
     }
+
     .card:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
+      box-shadow: 0 0 15px #00bfff99;
     }
-    .card img {
+
+    .card iframe {
       width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-    .card h3 {
-      margin: 10px;
-      color: #00bfff;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    .modal-content {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      color: #fff;
-      max-width: 500px;
-      width: 90%;
-    }
-    .modal-content h2 {
-      color: #00bfff;
-    }
-    .modal-content button {
-      margin-top: 20px;
-      padding: 10px;
-      background: #00bfff;
+      height: 180px;
       border: none;
+    }
+
+    .card-content {
+      padding: 15px;
+      color: #fff;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #00bfff;
+      font-size: 1.2em;
+    }
+
+    .card p {
+      font-size: 0.95em;
+      color: #ccc;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #00bfff;
       color: #000;
       font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .card a:hover {
+      background: #00a6d6;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .container {
+        margin: 100px 10px 40px;
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png">
+    <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
     <nav>
       <a href="index.html">Início</a>
       <a href="servicos.html">Serviços</a>
@@ -77,67 +145,49 @@
       <a href="duvidas.html">Dúvidas</a>
     </nav>
   </header>
+
   <div class="container">
-    <h1>Sistemas Disponíveis</h1>
-    <div class="cards">
-      <div class="card" onclick="showModal('delivery')">
-        <img src="https://source.unsplash.com/featured/?delivery" alt="Delivery">
-        <h3>Delivery com WhatsApp</h3>
+    <h1>Nossos Serviços</h1>
+    <div class="card-grid">
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/sR2QdKZ1G18" allowfullscreen></iframe>
+        <div class="card-content">
+          <h3>Painel de Vendas</h3>
+          <p>Visualize suas vendas por dia, empresa, plataforma. Exporte relatórios e compartilhe pelo WhatsApp.</p>
+          <a href="orcamento.html">Solicitar Orçamento</a>
+        </div>
       </div>
-      <div class="card" onclick="showModal('painel')">
-        <img src="https://source.unsplash.com/featured/?dashboard" alt="Painel">
-        <h3>Painel de Requisições</h3>
+
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/qD2TGLCkZfU" allowfullscreen></iframe>
+        <div class="card-content">
+          <h3>Painel Financeiro</h3>
+          <p>Acompanhe entradas, saídas, balanços e metas financeiras com visual moderno e filtros.</p>
+          <a href="orcamento.html">Solicitar Orçamento</a>
+        </div>
       </div>
-      <div class="card" onclick="showModal('reserva')">
-        <img src="https://source.unsplash.com/featured/?calendar" alt="Reserva">
-        <h3>Calendário de Reservas</h3>
+
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/VRpJmfZcKgo" allowfullscreen></iframe>
+        <div class="card-content">
+          <h3>Painel de Cancelamentos</h3>
+          <p>Visualização de cancelamentos por loja, com comparativo e ranking automático.</p>
+          <a href="orcamento.html">Solicitar Orçamento</a>
+        </div>
       </div>
-      <div class="card" onclick="showModal('financeiro')">
-        <img src="https://source.unsplash.com/featured/?finance" alt="Financeiro">
-        <h3>Controle Financeiro</h3>
+
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/hRJn3UIAhI0" allowfullscreen></iframe>
+        <div class="card-content">
+          <h3>Controle de Requisições</h3>
+          <p>Gestão de requisições com aprovação, conclusão, exportação e WhatsApp integrado.</p>
+          <a href="orcamento.html">Solicitar Orçamento</a>
+        </div>
       </div>
+
+      <!-- Mais cards podem ser adicionados abaixo -->
+
     </div>
   </div>
-
-  <div class="modal" id="modal">
-    <div class="modal-content" id="modalContent">
-      <h2 id="modalTitle"></h2>
-      <p id="modalDesc"></p>
-      <button onclick="closeModal()">Fechar</button>
-    </div>
-  </div>
-
-  <script>
-    const sistemas = {
-      delivery: {
-        title: 'Sistema de Delivery com WhatsApp',
-        desc: 'Gestão de pedidos, integração com clientes via WhatsApp, painel com controle de entregas e histórico completo.'
-      },
-      painel: {
-        title: 'Painel de Requisições',
-        desc: 'Gerencie solicitações por setor, aprove ou negue em tempo real, gere relatórios e acompanhe o fluxo.'
-      },
-      reserva: {
-        title: 'Calendário de Reservas',
-        desc: 'Permite agendar, visualizar e confirmar reservas com integração ao Google Calendar ou e-mail.'
-      },
-      financeiro: {
-        title: 'Controle Financeiro e de Metas',
-        desc: 'Acompanhe receitas, despesas, metas mensais e projeções com visualização em gráficos e relatórios.'
-      }
-    };
-
-    function showModal(id) {
-      const modal = document.getElementById('modal');
-      const content = sistemas[id];
-      document.getElementById('modalTitle').innerText = content.title;
-      document.getElementById('modalDesc').innerText = content.desc;
-      modal.style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-  </script>
 </body>
 </html>
