@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>CB Systems - Serviços</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css">
   <style>
     body {
       background: #0a0a0a;
@@ -69,7 +68,6 @@
       transition: all 0.3s ease;
       box-shadow: 0 0 15px #00bfff22;
       cursor: pointer;
-      text-decoration: none;
     }
     .card:hover {
       background-color: #00bfff11;
@@ -86,6 +84,47 @@
       font-weight: bold;
       color: #00bfff;
     }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 800px;
+      width: 90%;
+      position: relative;
+      text-align: left;
+    }
+    .modal-content iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #00bfff;
+    }
+    .modal-description {
+      font-size: 1em;
+      color: #ccc;
+    }
   </style>
 </head>
 <body>
@@ -99,22 +138,44 @@
       <a href="duvidas.html">Dúvidas</a>
     </nav>
   </header>
+
   <div class="container">
     <div class="banner"></div>
     <h1>Serviços da CB Systems</h1>
     <p>Explore os principais serviços oferecidos por nossa equipe:</p>
     <div class="cards">
-      <div class="card"><span>🔹</span><div class="card-title">Sistema de Vendas</div></div>
-      <div class="card"><span>🏦</span><div class="card-title">Gestão de Estoque</div></div>
-      <div class="card"><span>💸</span><div class="card-title">Controle Financeiro</div></div>
-      <div class="card"><span>💌</span><div class="card-title">Atendimento ao Cliente</div></div>
-      <div class="card"><span>💻</span><div class="card-title">Integração com Planilhas</div></div>
-      <div class="card"><span>📧</span><div class="card-title">Disparo de E-mails</div></div>
-      <div class="card"><span>🚀</span><div class="card-title">Sistema de Agendamento</div></div>
-      <div class="card"><span>📈</span><div class="card-title">Painel de Indicadores</div></div>
-      <div class="card"><span>🚀</span><div class="card-title">Sistema de Agendamento</div></div>
-      <div class="card"><span>📈</span><div class="card-title">Painel de Indicadores</div></div>
+      <div class="card" onclick="abrirModal('Sistema de Vendas', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Um sistema completo para vendas presenciais e online.')"><span>🔹</span><div class="card-title">Sistema de Vendas</div></div>
+      <div class="card" onclick="abrirModal('Gestão de Estoque', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Controle seus produtos com eficiência e inteligência.')"><span>🏦</span><div class="card-title">Gestão de Estoque</div></div>
+      <div class="card" onclick="abrirModal('Controle Financeiro', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Gerencie suas finanças com relatórios e previsões.')"><span>💸</span><div class="card-title">Controle Financeiro</div></div>
+      <div class="card" onclick="abrirModal('Atendimento ao Cliente', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Automatize e otimize o atendimento com chatbots.')"><span>💌</span><div class="card-title">Atendimento ao Cliente</div></div>
+      <div class="card" onclick="abrirModal('Integração com Planilhas', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Conecte seus dados diretamente ao Google Sheets.')"><span>💻</span><div class="card-title">Integração com Planilhas</div></div>
+      <div class="card" onclick="abrirModal('Disparo de E-mails', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Envie campanhas automáticas para seus contatos.')"><span>📧</span><div class="card-title">Disparo de E-mails</div></div>
+      <div class="card" onclick="abrirModal('Sistema de Agendamento', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Agende compromissos com controle de horários.')"><span>🚀</span><div class="card-title">Sistema de Agendamento</div></div>
+      <div class="card" onclick="abrirModal('Painel de Indicadores', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualize indicadores e resultados em tempo real.')"><span>📈</span><div class="card-title">Painel de Indicadores</div></div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="modal-close" onclick="fecharModal()">✖</div>
+      <h2 id="modalTitle">Título</h2>
+      <iframe id="modalVideo" src="" allowfullscreen></iframe>
+      <p class="modal-description" id="modalDescription">Descrição</p>
+    </div>
+  </div>
+
+  <script>
+    function abrirModal(titulo, videoURL, descricao) {
+      document.getElementById('modalTitle').innerText = titulo;
+      document.getElementById('modalVideo').src = videoURL;
+      document.getElementById('modalDescription').innerText = descricao;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function fecharModal() {
+      document.getElementById('modalVideo').src = '';
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
