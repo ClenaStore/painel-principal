@@ -12,6 +12,7 @@
       margin: 0;
       padding: 0;
     }
+
     header {
       position: fixed;
       top: 0;
@@ -25,53 +26,63 @@
       background-color: #000;
       border-bottom: 1px solid #00bfff;
     }
+
     header img {
       height: 50px;
       filter: brightness(0) invert(1);
     }
+
     nav {
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
     }
+
     nav a {
       color: #00bfff;
       text-decoration: none;
       font-weight: bold;
     }
+
     nav a:hover {
       color: #fff;
     }
+
     .container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 120px 20px 40px;
       text-align: center;
     }
+
     .banner {
       width: 100%;
       height: 300px;
-      background-color: #111;
+      background-image: url('https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png');
+      background-size: cover;
+      background-position: center;
       border: 2px solid #00bfff;
       border-radius: 12px;
       box-shadow: 0 0 20px #00bfff33;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 1.3em;
-      color: #00bfff;
       margin-bottom: 40px;
     }
+
+    h1 {
+      font-size: 2em;
+      margin: 20px 0 10px;
+    }
+
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 20px;
     }
+
     .card {
       background-color: #111;
       border: 1px solid #00bfff33;
       border-radius: 12px;
-      padding: 30px 20px;
+      padding: 25px 15px;
       text-align: center;
       color: #fff;
       transition: all 0.3s ease;
@@ -79,20 +90,48 @@
       cursor: pointer;
       text-decoration: none;
     }
+
     .card:hover {
       background-color: #00bfff11;
       box-shadow: 0 0 20px #00bfff99;
       transform: scale(1.03);
     }
+
     .card span {
-      font-size: 2.2em;
+      font-size: 2em;
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
+
     .card-title {
-      font-size: 1.1em;
+      font-size: 1em;
       font-weight: bold;
       color: #00bfff;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 100px 10px 40px;
+      }
+
+      .card {
+        padding: 20px 10px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 15px;
+      }
+
+      nav {
+        margin-top: 10px;
+        gap: 10px;
+      }
+
+      header img {
+        height: 40px;
+      }
     }
   </style>
 </head>
@@ -109,11 +148,11 @@
   </header>
 
   <div class="container">
-    <div class="banner">
-      Seu banner 1900x300px aqui (ou imagem personalizada)
-    </div>
+    <div class="banner"></div>
+
     <h1>Bem-vindo à CB Systems</h1>
     <p>Navegue pelos módulos disponíveis abaixo:</p>
+
     <div class="cards">
       <div class="card">
         <span>🖥️</span>
