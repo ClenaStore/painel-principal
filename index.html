@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CB Systems</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background-color: #0a0a0a;
@@ -40,7 +36,7 @@
     nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 15px;
     }
 
     nav a {
@@ -48,6 +44,7 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 0.95em;
+      cursor: pointer;
     }
 
     nav a:hover {
@@ -55,86 +52,65 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 110px auto 40px;
       padding: 20px;
     }
 
-    .banner {
-      width: 100%;
-      height: 300px;
-      background-color: #111;
-      border: 2px solid #00bfff;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #00bfff33;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 1.3em;
-      color: #00bfff;
-      margin-bottom: 40px;
+    .section {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background-color: #111;
-      border: 1px solid #00bfff33;
-      border-radius: 12px;
-      padding: 24px 16px;
-      text-align: center;
-      color: #fff;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px #00bfff22;
-      cursor: pointer;
-    }
-
-    .card:hover {
-      background-color: #00bfff11;
-      box-shadow: 0 0 20px #00bfff99;
-      transform: scale(1.03);
-    }
-
-    .card span {
-      font-size: 2rem;
+    .section.active {
       display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: #00bfff;
       margin-bottom: 10px;
     }
 
-    .card-title {
+    p, li {
+      color: #ccc;
       font-size: 1em;
-      font-weight: bold;
-      color: #00bfff;
+    }
+
+    ul { padding-left: 20px; }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    form button {
+      padding: 10px 20px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    form button:hover {
+      background-color: #009fd9;
     }
 
     @media (max-width: 600px) {
       nav {
         justify-content: center;
-        gap: 10px;
         margin-top: 10px;
-      }
-
-      .banner {
-        font-size: 1em;
-        padding: 0 10px;
-        height: 200px;
-      }
-
-      .card {
-        padding: 20px 10px;
-      }
-
-      .card span {
-        font-size: 1.8rem;
-      }
-
-      .card-title {
-        font-size: 0.95em;
       }
     }
   </style>
@@ -144,46 +120,72 @@
   <header>
     <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
     <nav>
-      <a href="#inicio">Início</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#orcamento">Orçamento</a>
-      <a href="#sistemas">Sistemas</a>
-      <a href="#duvidas">Dúvidas</a>
+      <a onclick="showSection('inicio')">Início</a>
+      <a onclick="showSection('servicos')">Serviços</a>
+      <a onclick="showSection('orcamento')">Orçamento</a>
+      <a onclick="showSection('sistemas')">Sistemas</a>
+      <a onclick="showSection('duvidas')">Dúvidas</a>
     </nav>
   </header>
 
   <div class="container">
-    <div class="banner">
-      Seu banner 1900x300px aqui (ou imagem personalizada)
+
+    <div id="inicio" class="section active">
+      <h2>🏠 Início</h2>
+      <p>Bem-vindo à <strong>CB Systems</strong>, sua parceira em soluções tecnológicas. Atuamos com desenvolvimento de sistemas sob medida, automações empresariais e integração de plataformas como Google Sheets, ClickUp, WhatsApp API e muito mais.</p>
     </div>
 
-    <div class="grid">
-      <div class="card" onclick="location.href='#resumo'">
-        <span>📈</span>
-        <div class="card-title">Resumo Financeiro</div>
-      </div>
-
-      <div class="card" onclick="location.href='#cancelamentos'">
-        <span>❌</span>
-        <div class="card-title">Cancelamentos</div>
-      </div>
-
-      <div class="card" onclick="location.href='#vendas'">
-        <span>🚚</span>
-        <div class="card-title">Vendas Delivery</div>
-      </div>
-
-      <div class="card" onclick="location.href='#metas'">
-        <span>📊</span>
-        <div class="card-title">Meta de Faturamento</div>
-      </div>
-
-      <div class="card" onclick="location.href='#conciliacoes'">
-        <span>💳</span>
-        <div class="card-title">Conciliações</div>
-      </div>
+    <div id="servicos" class="section">
+      <h2>🛠 Serviços</h2>
+      <ul>
+        <li>✅ Desenvolvimento de sistemas web personalizados</li>
+        <li>✅ Dashboards com dados dinâmicos do Google Sheets</li>
+        <li>✅ Integração com WhatsApp oficial (API Meta)</li>
+        <li>✅ Automatização de orçamentos, reservas, requisições e relatórios</li>
+        <li>✅ Sistemas para delivery, vendas, conciliações e gestão</li>
+      </ul>
     </div>
+
+    <div id="orcamento" class="section">
+      <h2>💰 Orçamento</h2>
+      <p>Preencha o formulário abaixo que retornaremos com uma proposta personalizada para você.</p>
+      <form onsubmit="event.preventDefault(); alert('Formulário enviado!');">
+        <input type="text" placeholder="Seu nome completo" required />
+        <input type="email" placeholder="Seu e-mail" required />
+        <textarea placeholder="Descreva seu projeto..." rows="5" required></textarea>
+        <button type="submit">Solicitar Orçamento</button>
+      </form>
+    </div>
+
+    <div id="sistemas" class="section">
+      <h2>📦 Sistemas</h2>
+      <p>Confira os sistemas que podemos entregar com agilidade:</p>
+      <ul>
+        <li>📦 Sistema de delivery com WhatsApp e painel administrativo</li>
+        <li>📅 Calendário de reservas com confirmação por e-mail e painel</li>
+        <li>💰 Controle financeiro e metas por empresa</li>
+        <li>📄 Painéis de requisições, controle de estoque e orçamentos</li>
+        <li>📊 Conciliações bancárias e de cartões</li>
+      </ul>
+    </div>
+
+    <div id="duvidas" class="section">
+      <h2>❓ Dúvidas Frequentes</h2>
+      <p><strong>Preciso instalar algo?</strong><br> Não! Todos os nossos sistemas rodam direto no navegador (web-based).</p>
+      <p><strong>Consigo usar no celular?</strong><br> Sim, todos os painéis são 100% responsivos.</p>
+      <p><strong>O que é necessário para começar?</strong><br> Basta preencher o orçamento ou falar conosco pelo WhatsApp.</p>
+      <p><strong>Tem suporte?</strong><br> Sim, damos suporte por WhatsApp e e-mail em horário comercial.</p>
+    </div>
+
   </div>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
