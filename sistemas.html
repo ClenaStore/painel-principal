@@ -134,7 +134,7 @@
       padding: 15px;
       border-radius: 10px;
       width: 95vw;
-      max-width: 400px;
+      max-width: 280px;
       text-align: left;
       color: #fff;
       box-shadow: 0 0 20px #00bfff88;
@@ -189,70 +189,68 @@
       .card-title {
         font-size: 0.95em;
       }
+      .modal-content {
+        max-width: 280px;
+        padding: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="servicos.html">Serviços</a>
-      <a href="orcamento.html">Orçamento</a>
-      <a href="sistemas.html">Sistemas</a>
-      <a href="duvidas.html">Dúvidas</a>
-    </nav>
-  </header>
-
   <div class="container">
-    <div class="banner banner-desktop"></div>
-    <div class="banner banner-mobile"></div>
-    <h1>Sistemas</h1>
-    <input type="text" id="busca" placeholder="🔍 Buscar sistema...">
-
-    <div class="cards" id="cardsContainer">
-      <div class="card" onclick="abrirModal('Criação de Sites', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Sites responsivos, rápidos e com SEO otimizado.')">
-        <span>🌐</span><div class="card-title">Criação de Sites</div>
+    <div class="banner"></div>
+    <input type="text" id="busca" placeholder="🔍 Buscar sistema..." onkeyup="filtrarCards()">
+    <div class="cards">
+      <div class="card" onclick="abrirModal('Criação de Sites', 'Desenvolvemos sites profissionais e responsivos.', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+        <span>🌐</span>
+        <div class="card-title">Criação de Sites</div>
       </div>
-      <div class="card" onclick="abrirModal('Aplicativos', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Desenvolvimento de apps Android e Web com integração completa.')">
-        <span>📱</span><div class="card-title">Aplicativos</div>
+      <div class="card" onclick="abrirModal('Aplicativos', 'Criamos apps personalizados para Android e iOS.', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+        <span>📱</span>
+        <div class="card-title">Aplicativos</div>
       </div>
-      <div class="card" onclick="abrirModal('Painéis e Dashboards', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualização de dados com gráficos, relatórios e indicadores.')">
-        <span>📊</span><div class="card-title">Painéis e Dashboards</div>
+      <div class="card" onclick="abrirModal('Painéis e Dashboards', 'Painéis gerenciais conectados a planilhas ou sistemas.', 'https://www.youtube.com/embed/dQw4w9WgXcQ')">
+        <span>📊</span>
+        <div class="card-title">Painéis e Dashboards</div>
       </div>
     </div>
   </div>
 
   <div class="modal" id="modal">
     <div class="modal-content">
-      <span class="close" onclick="fecharModal()">&times;</span>
-      <h2 id="modalTitulo"></h2>
-      <iframe id="modalVideo" src="" allowfullscreen></iframe>
-      <p id="modalDescricao"></p>
-      <button onclick="window.location.href='orcamento.html'">Solicitar Orçamento</button>
+      <div class="close" onclick="fecharModal()">✖</div>
+      <iframe id="video" src="" allowfullscreen></iframe>
+      <h2 id="modalTitulo">Título</h2>
+      <p id="modalDescricao">Descrição</p>
+      <button onclick="irParaOrcamento()">Solicitar Orçamento</button>
     </div>
   </div>
 
   <script>
-    function abrirModal(titulo, video, descricao) {
+    function abrirModal(titulo, descricao, videoURL) {
       document.getElementById('modalTitulo').innerText = titulo;
-      document.getElementById('modalVideo').src = video;
       document.getElementById('modalDescricao').innerText = descricao;
+      document.getElementById('video').src = videoURL;
       document.getElementById('modal').style.display = 'flex';
     }
 
     function fecharModal() {
       document.getElementById('modal').style.display = 'none';
-      document.getElementById('modalVideo').src = '';
+      document.getElementById('video').src = "";
     }
 
-    document.getElementById('busca').addEventListener('input', function () {
-      const termo = this.value.toLowerCase();
-      document.querySelectorAll('.card').forEach(card => {
+    function irParaOrcamento() {
+      window.location.href = 'orcamento.html';
+    }
+
+    function filtrarCards() {
+      const termo = document.getElementById('busca').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
         const texto = card.innerText.toLowerCase();
         card.style.display = texto.includes(termo) ? 'block' : 'none';
       });
-    });
+    }
   </script>
 </body>
 </html>
