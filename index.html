@@ -69,6 +69,7 @@
       box-shadow: 0 0 20px #00bfff33;
       margin: 0 auto 30px;
       position: relative;
+      overflow: hidden;
     }
 
     .banner-desktop {
@@ -84,6 +85,13 @@
 
     .banner-mobile {
       display: none;
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(12).png?raw=true');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      aspect-ratio: 12 / 9;
+      display: none;
+      position: relative;
     }
 
     .banner-cards {
@@ -205,11 +213,12 @@
       }
 
       .banner-cards {
-        position: static;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
         flex-direction: column;
         gap: 8px;
         align-items: flex-start;
-        margin-top: 10px;
       }
 
       .banner-card {
@@ -284,9 +293,34 @@
       </div>
     </div>
 
-    <!-- ✅ BANNER MOBILE COM IMAGEM PERSONALIZADA -->
+    <!-- ✅ BANNER MOBILE COM BOTÕES DENTRO -->
     <div class="banner banner-mobile">
-      <img src="https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(12).png?raw=true" alt="Banner Mobile CB Systems" style="width: 100%; border-radius: 12px; box-shadow: 0 0 12px #00bfff44;" />
+      <div class="banner-cards">
+        <a href="mei.html">
+          <div class="banner-card">
+            <span>🔒</span>
+            <div class="card-title">Login</div>
+          </div>
+        </a>
+        <a href="promocoes.html">
+          <div class="banner-card">
+            <span>📦</span>
+            <div class="card-title">Promoções</div>
+          </div>
+        </a>
+        <a href="indicados.html">
+          <div class="banner-card">
+            <span>🏢</span>
+            <div class="card-title">Indicados</div>
+          </div>
+        </a>
+        <a href="teste.html">
+          <div class="banner-card">
+            <span>🧪</span>
+            <div class="card-title">Teste</div>
+          </div>
+        </a>
+      </div>
     </div>
 
     <!-- ✅ MENSAGEM SÓ NO CELULAR -->
