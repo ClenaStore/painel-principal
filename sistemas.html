@@ -67,14 +67,30 @@
 
     .banner {
       width: 100%;
-      height: 220px;
-      background-image: url('banner.png');
+      aspect-ratio: 12 / 5;
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
       border: 2px solid #00bfff;
       border-radius: 12px;
       box-shadow: 0 0 20px #00bfff33;
       margin-bottom: 30px;
+    }
+
+    .banner-desktop {
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(11).png?raw=true');
+    }
+
+    .banner-mobile {
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(10).png?raw=true');
+    }
+
+    @media (min-width: 769px) {
+      .banner-mobile { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .banner-desktop { display: none; }
     }
 
     #busca {
@@ -199,10 +215,6 @@
         padding-top: 120px;
       }
 
-      .banner {
-        height: 150px;
-      }
-
       .card span {
         font-size: 1.5em;
       }
@@ -226,12 +238,13 @@
   </header>
 
   <div class="container">
-    <div class="banner"></div>
+    <div class="banner banner-desktop"></div>
+    <div class="banner banner-mobile"></div>
+
     <h1>Sistemas</h1>
     <input type="text" id="busca" placeholder="🔍 Buscar sistema...">
 
     <div class="cards" id="cardsContainer">
-      <!-- Cada card pode receber dados via JS futuramente -->
       <div class="card" onclick="abrirModal('Criação de Sites', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Sites responsivos, rápidos e com SEO otimizado.')">
         <span>🌐</span><div class="card-title">Criação de Sites</div>
       </div>
@@ -239,27 +252,6 @@
         <span>📱</span><div class="card-title">Aplicativos</div>
       </div>
       <div class="card" onclick="abrirModal('Painéis e Dashboards', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualização de dados com gráficos, relatórios e indicadores.')">
-        <span>📊</span><div class="card-title">Painéis e Dashboards</div>
-      </div>
-       <div class="card" onclick="abrirModal('Painéis e Dashboards', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualização de dados com gráficos, relatórios e indicadores.')">
-        <span>📊</span><div class="card-title">Painéis e Dashboards</div>
-      </div>
-       <div class="card" onclick="abrirModal('Painéis e Dashboards', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualização de dados com gráficos, relatórios e indicadores.')">
-        <span>📊</span><div class="card-title">Painéis e Dashboards</div>
-      </div>
-       <div class="card" onclick="abrirModal('Painéis e Dashboards', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualização de dados com gráficos, relatórios e indicadores.')">
-        <span>📊</span><div class="card-title">Painéis e Dashboards</div>
-      </div>
-       <div class="card" onclick="abrirModal('Painéis e Dashboards', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualização de dados com gráficos, relatórios e indicadores.')">
-        <span>📊</span><div class="card-title">Painéis e Dashboards</div>
-      </div>
-       <div class="card" onclick="abrirModal('Painéis e Dashboards', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualização de dados com gráficos, relatórios e indicadores.')">
-        <span>📊</span><div class="card-title">Painéis e Dashboards</div>
-      </div>
-       <div class="card" onclick="abrirModal('Painéis e Dashboards', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualização de dados com gráficos, relatórios e indicadores.')">
-        <span>📊</span><div class="card-title">Painéis e Dashboards</div>
-      </div>
-       <div class="card" onclick="abrirModal('Painéis e Dashboards', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Visualização de dados com gráficos, relatórios e indicadores.')">
         <span>📊</span><div class="card-title">Painéis e Dashboards</div>
       </div>
       <div class="card" onclick="abrirModal('Sistemas Personalizados', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Soluções sob medida para sua empresa.')">
@@ -288,7 +280,7 @@
 
     function fecharModal() {
       document.getElementById('modal').style.display = 'none';
-      document.getElementById('modalVideo').src = ''; // parar vídeo
+      document.getElementById('modalVideo').src = '';
     }
 
     document.getElementById('busca').addEventListener('input', function () {
