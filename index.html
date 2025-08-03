@@ -115,15 +115,8 @@
       color: #00bfff;
     }
 
-    h1 {
-      font-size: 2em;
-      margin: 20px 0 10px;
-    }
-
-    p {
-      font-size: 1em;
-      color: #ccc;
-      margin-bottom: 30px;
+    h1, p {
+      margin: 10px 0;
     }
 
     .cards {
@@ -165,6 +158,10 @@
     .card a {
       text-decoration: none;
       color: inherit;
+    }
+
+    .mobile-only {
+      display: none;
     }
 
     @media (max-width: 600px) {
@@ -209,6 +206,16 @@
       .banner-card .card-title {
         font-size: 0.75em;
       }
+
+      .mobile-only {
+        display: block;
+      }
+    }
+
+    @media (min-width: 601px) {
+      .mobile-only {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -227,6 +234,8 @@
   </header>
 
   <div class="container">
+
+    <!-- BANNER DESKTOP (mantido para todas as telas) -->
     <div class="banner">
       <div class="banner-cards">
         <a href="mei.html">
@@ -255,6 +264,19 @@
         </a>
       </div>
     </div>
+
+    <!-- BANNER SOMENTE PARA CELULAR (SUBSTITUA ESTE BLOCO PELO SEU) -->
+    <div class="mobile-only" style="margin-bottom: 20px;">
+      <!-- Seu novo banner para celular entra aqui -->
+      <!-- Exemplo abaixo pode ser removido: -->
+      <img src="https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(12).png?raw=true" style="width: 100%; border-radius: 12px; box-shadow: 0 0 12px #00bfff44;" alt="Banner Mobile CB Systems">
+    </div>
+
+    <!-- TEXTO DE BOAS-VINDAS SOMENTE NO CELULAR -->
+    <h1 class="mobile-only">Bem-vindo à CB Systems</h1>
+    <p class="mobile-only">Navegue pelos módulos disponíveis abaixo:</p>
+
+    <!-- MÓDULOS -->
     <div class="cards">
       <a href="sistemas.html">
         <div class="card"><span>🖥️</span><div class="card-title">Sistemas Personalizados</div></div>
