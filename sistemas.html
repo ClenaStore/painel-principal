@@ -78,30 +78,6 @@
       text-align: center;
     }
 
-    .animated-text-container {
-      position: relative;
-      z-index: 10;
-      margin: 30px 0 -10px 10px;
-      text-align: left;
-      font-size: 1.4em;
-      font-weight: bold;
-      color: #00bfff;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .typing-text::after {
-      content: '|';
-      animation: blink 0.7s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
     .banner {
       width: 100%;
       aspect-ratio: 12 / 5;
@@ -112,14 +88,39 @@
       border-radius: 12px;
       box-shadow: 0 0 20px #00bfff33;
       margin-bottom: 30px;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
     }
 
     .banner-desktop {
-      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(14).png?raw=true');
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(11).png?raw=true');
     }
 
     .banner-mobile {
-      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(14).png?raw=true');
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(10).png?raw=true');
+    }
+
+    .animated-text-inside-banner {
+      position: absolute;
+      top: 25px;
+      left: 30px;
+      z-index: 2;
+      font-size: 2em;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .typing-text::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     @media (min-width: 769px) {
@@ -261,9 +262,10 @@
         font-size: 0.95em;
       }
 
-      .animated-text-container {
-        font-size: 1.1em;
-        margin-left: 5px;
+      .animated-text-inside-banner {
+        font-size: 1.3em;
+        top: 20px;
+        left: 20px;
       }
     }
   </style>
@@ -281,14 +283,21 @@
   </header>
 
   <div class="container">
-    <!-- Texto animado acima do banner -->
-    <div class="animated-text-container">
-      <span class="static-text">🚀</span>
-      <span class="typing-text" id="typing"></span>
+    <!-- Banner Desktop -->
+    <div class="banner banner-desktop">
+      <div class="animated-text-inside-banner">
+        <span class="static-text">🚀</span>
+        <span class="typing-text" id="typing"></span>
+      </div>
     </div>
 
-    <div class="banner banner-desktop"></div>
-    <div class="banner banner-mobile"></div>
+    <!-- Banner Mobile -->
+    <div class="banner banner-mobile">
+      <div class="animated-text-inside-banner">
+        <span class="static-text">🚀</span>
+        <span class="typing-text" id="typingMobile"></span>
+      </div>
+    </div>
 
     <h1>Sistemas</h1>
     <input type="text" id="busca" placeholder="🔍 Buscar sistema...">
@@ -346,32 +355,37 @@
       "Automatize seus processos com a CB Systems"
     ];
 
-    let fraseIndex = 0;
-    let charIndex = 0;
-    let apagando = false;
-    const typingEl = document.getElementById("typing");
+    function animarTexto(idElemento) {
+      let fraseIndex = 0;
+      let charIndex = 0;
+      let apagando = false;
+      const el = document.getElementById(idElemento);
 
-    function digitar() {
-      const fraseAtual = frases[fraseIndex];
+      function digitar() {
+        const frase = frases[fraseIndex];
 
-      if (!apagando) {
-        typingEl.textContent = fraseAtual.substring(0, charIndex++);
-        if (charIndex > fraseAtual.length) {
-          apagando = true;
-          setTimeout(digitar, 1200);
-          return;
+        if (!apagando) {
+          el.textContent = frase.substring(0, charIndex++);
+          if (charIndex > frase.length) {
+            apagando = true;
+            setTimeout(digitar, 1000);
+            return;
+          }
+        } else {
+          el.textContent = frase.substring(0, charIndex--);
+          if (charIndex < 0) {
+            apagando = false;
+            fraseIndex = (fraseIndex + 1) % frases.length;
+          }
         }
-      } else {
-        typingEl.textContent = fraseAtual.substring(0, charIndex--);
-        if (charIndex < 0) {
-          apagando = false;
-          fraseIndex = (fraseIndex + 1) % frases.length;
-        }
+        setTimeout(digitar, apagando ? 40 : 80);
       }
-      setTimeout(digitar, apagando ? 40 : 90);
+
+      digitar();
     }
 
-    digitar();
+    animarTexto("typing");
+    animarTexto("typingMobile");
   </script>
 </body>
 </html>
