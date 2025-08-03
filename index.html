@@ -64,23 +64,32 @@
     .banner {
       max-width: 100%;
       height: auto;
-      aspect-ratio: 12 / 5;
-      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(11).png?raw=true');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
       border: 2px solid #00bfff;
       border-radius: 12px;
       box-shadow: 0 0 20px #00bfff33;
       margin: 0 auto 30px;
       position: relative;
+    }
+
+    .banner-desktop {
+      aspect-ratio: 12 / 5;
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(11).png?raw=true');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      padding-left: 20px;
+      justify-content: center;
+    }
+
+    .banner-mobile {
+      display: none;
     }
 
     .banner-cards {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
       display: flex;
       gap: 12px;
       flex-direction: row;
@@ -187,17 +196,20 @@
         padding-top: 10px;
       }
 
-      .banner {
-        aspect-ratio: 12 / 9;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 15px;
+      .banner-desktop {
+        display: none;
+      }
+
+      .banner-mobile {
+        display: block;
       }
 
       .banner-cards {
+        position: static;
         flex-direction: column;
         gap: 8px;
         align-items: flex-start;
+        margin-top: 10px;
       }
 
       .banner-card {
@@ -241,7 +253,9 @@
   </header>
 
   <div class="container">
-    <div class="banner">
+
+    <!-- ✅ BANNER DESKTOP COM BOTÕES -->
+    <div class="banner banner-desktop">
       <div class="banner-cards">
         <a href="mei.html">
           <div class="banner-card">
@@ -270,10 +284,16 @@
       </div>
     </div>
 
-    <!-- SOMENTE NO CELULAR -->
+    <!-- ✅ BANNER MOBILE COM IMAGEM PERSONALIZADA -->
+    <div class="banner banner-mobile">
+      <img src="https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(12).png?raw=true" alt="Banner Mobile CB Systems" style="width: 100%; border-radius: 12px; box-shadow: 0 0 12px #00bfff44;" />
+    </div>
+
+    <!-- ✅ MENSAGEM SÓ NO CELULAR -->
     <h1 class="mobile-only">Bem-vindo à CB Systems</h1>
     <p class="mobile-only">Navegue pelos módulos disponíveis abaixo:</p>
 
+    <!-- ✅ MÓDULOS -->
     <div class="cards">
       <a href="sistemas.html">
         <div class="card"><span>🖥️</span><div class="card-title">Sistemas Personalizados</div></div>
