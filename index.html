@@ -5,6 +5,17 @@
   <title>CB Systems - Início</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <style>
+    /* Permite rolar, mas esconde a barra */
+    html, body {
+      height: 100%;
+      overflow: scroll;
+      scrollbar-width: none; /* Firefox */
+    }
+
+    body::-webkit-scrollbar {
+      display: none; /* Chrome, Safari */
+    }
+
     body {
       background: #0a0a0a;
       color: #00bfff;
@@ -262,85 +273,32 @@
   </header>
 
   <div class="container">
-
-    <!-- ✅ BANNER DESKTOP COM BOTÕES -->
     <div class="banner banner-desktop">
       <div class="banner-cards">
-        <a href="mei.html">
-          <div class="banner-card">
-            <span>🔒</span>
-            <div class="card-title">Login</div>
-          </div>
-        </a>
-        <a href="promocoes.html">
-          <div class="banner-card">
-            <span>📦</span>
-            <div class="card-title">Promoções</div>
-          </div>
-        </a>
-        <a href="indicados.html">
-          <div class="banner-card">
-            <span>🏢</span>
-            <div class="card-title">Indicados</div>
-          </div>
-        </a>
-        <a href="teste.html">
-          <div class="banner-card">
-            <span>🧪</span>
-            <div class="card-title">Teste</div>
-          </div>
-        </a>
+        <a href="mei.html"><div class="banner-card"><span>🔒</span><div class="card-title">Login</div></div></a>
+        <a href="promocoes.html"><div class="banner-card"><span>📦</span><div class="card-title">Promoções</div></div></a>
+        <a href="indicados.html"><div class="banner-card"><span>🏢</span><div class="card-title">Indicados</div></div></a>
+        <a href="teste.html"><div class="banner-card"><span>🧪</span><div class="card-title">Teste</div></div></a>
       </div>
     </div>
 
-    <!-- ✅ BANNER MOBILE COM BOTÕES MENORES -->
     <div class="banner banner-mobile">
       <div class="banner-cards">
-        <a href="mei.html">
-          <div class="banner-card">
-            <span>🔒</span>
-            <div class="card-title">Login</div>
-          </div>
-        </a>
-        <a href="promocoes.html">
-          <div class="banner-card">
-            <span>📦</span>
-            <div class="card-title">Promoções</div>
-          </div>
-        </a>
-        <a href="indicados.html">
-          <div class="banner-card">
-            <span>🏢</span>
-            <div class="card-title">Indicados</div>
-          </div>
-        </a>
-        <a href="teste.html">
-          <div class="banner-card">
-            <span>🧪</span>
-            <div class="card-title">Teste</div>
-          </div>
-        </a>
+        <a href="mei.html"><div class="banner-card"><span>🔒</span><div class="card-title">Login</div></div></a>
+        <a href="promocoes.html"><div class="banner-card"><span>📦</span><div class="card-title">Promoções</div></div></a>
+        <a href="indicados.html"><div class="banner-card"><span>🏢</span><div class="card-title">Indicados</div></div></a>
+        <a href="teste.html"><div class="banner-card"><span>🧪</span><div class="card-title">Teste</div></div></a>
       </div>
     </div>
 
-    <!-- ✅ MENSAGEM SÓ NO CELULAR -->
     <h1 class="mobile-only">Bem-vindo à CB Systems</h1>
     <p class="mobile-only">Navegue pelos módulos disponíveis abaixo:</p>
 
-    <!-- ✅ MÓDULOS -->
     <div class="cards">
-      <a href="sistemas.html">
-        <div class="card"><span>🖥️</span><div class="card-title">Sistemas Personalizados</div></div>
-      </a>
-      <a href="servicos.html">
-        <div class="card"><span>⚙️</span><div class="card-title">Criação de Painéis</div></div>
-      </a>
-      <a href="orcamento.html">
-        <div class="card"><span>📊</span><div class="card-title">Solicitar Orçamento</div></div>
-      </a>
-      <a href="duvidas.html">
-        <div class="card"><span>❓</span><div class="card-title">Dúvidas Frequentes</div></div>
-      </a>
+      <a href="sistemas.html"><div class="card"><span>🖥️</span><div class="card-title">Sistemas Personalizados</div></div></a>
+      <a href="servicos.html"><div class="card"><span>⚙️</span><div class="card-title">Criação de Painéis</div></div></a>
+      <a href="orcamento.html"><div class="card"><span>📊</span><div class="card-title">Solicitar Orçamento</div></div></a>
+      <a href="duvidas.html"><div class="card"><span>❓</span><div class="card-title">Dúvidas Frequentes</div></div></a>
     </div>
   </div>
 </body>
