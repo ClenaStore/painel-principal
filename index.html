@@ -62,8 +62,9 @@
     }
 
     .banner {
-      width: 1200px;
-      height: 500px;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 12 / 5;
       background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(11).png?raw=true');
       background-size: cover;
       background-position: center;
@@ -73,15 +74,16 @@
       box-shadow: 0 0 20px #00bfff33;
       margin: 0 auto 30px;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 20px;
     }
 
     .banner-cards {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
       display: flex;
       gap: 12px;
-      justify-content: flex-start;
+      flex-direction: row;
     }
 
     .banner-card {
@@ -89,7 +91,7 @@
       border: 1px dashed #00bfff;
       border-radius: 10px;
       padding: 15px 10px;
-      width: 130px;
+      width: 120px;
       text-align: center;
       color: #fff;
       transition: 0.3s;
@@ -102,13 +104,13 @@
     }
 
     .banner-card span {
-      font-size: 1.6em;
+      font-size: 1.5em;
       display: block;
       margin-bottom: 5px;
     }
 
     .banner-card .card-title {
-      font-size: 0.95em;
+      font-size: 0.9em;
       font-weight: bold;
       color: #00bfff;
     }
@@ -182,22 +184,30 @@
       }
 
       .banner {
-        width: 100%;
-        height: auto;
+        aspect-ratio: 12 / 9;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
       }
 
       .banner-cards {
-        position: relative;
         flex-direction: column;
-        left: 0;
-        bottom: auto;
-        margin-top: 20px;
-        align-items: center;
+        gap: 8px;
+        align-items: flex-start;
       }
 
       .banner-card {
-        width: 100px;
-        margin-bottom: 10px;
+        width: 90px;
+        padding: 10px 8px;
+        font-size: 0.8em;
+      }
+
+      .banner-card span {
+        font-size: 1.2em;
+      }
+
+      .banner-card .card-title {
+        font-size: 0.75em;
       }
     }
   </style>
@@ -218,33 +228,33 @@
 
   <div class="container">
     <div class="banner">
-  <div class="banner-cards">
-    <a href="mei.html">
-      <div class="banner-card">
-        <span>🔒</span>
-        <div class="card-title">Login Seguro</div>
+      <div class="banner-cards">
+        <a href="mei.html">
+          <div class="banner-card">
+            <span>🔒</span>
+            <div class="card-title">Login</div>
+          </div>
+        </a>
+        <a href="promocoes.html">
+          <div class="banner-card">
+            <span>📦</span>
+            <div class="card-title">Promoções</div>
+          </div>
+        </a>
+        <a href="indicados.html">
+          <div class="banner-card">
+            <span>🏢</span>
+            <div class="card-title">Indicados</div>
+          </div>
+        </a>
+        <a href="teste.html">
+          <div class="banner-card">
+            <span>🧪</span>
+            <div class="card-title">Teste</div>
+          </div>
+        </a>
       </div>
-    </a>
-    <a href="promocoes.html">
-      <div class="banner-card">
-        <span>📦</span>
-        <div class="card-title">Promoções</div>
-      </div>
-    </a>
-    <a href="indicados.html">
-      <div class="banner-card">
-        <span>🏢</span>
-        <div class="card-title">Indicados</div>
-      </div>
-    </a>
-    <a href="teste.html">
-      <div class="banner-card">
-        <span>🧪</span>
-        <div class="card-title">Teste</div>
-      </div>
-    </a>
-  </div>
-</div>
+    </div>
 
     <h1>Bem-vindo à CB Systems</h1>
     <p>Navegue pelos módulos disponíveis abaixo:</p>
