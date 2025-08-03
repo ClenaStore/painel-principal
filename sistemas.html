@@ -78,6 +78,30 @@
       text-align: center;
     }
 
+    .animated-text-container {
+      position: relative;
+      z-index: 10;
+      margin: 30px 0 -10px 10px;
+      text-align: left;
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #00bfff;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .typing-text::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
     .banner {
       width: 100%;
       aspect-ratio: 12 / 5;
@@ -91,11 +115,11 @@
     }
 
     .banner-desktop {
-      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(11).png?raw=true');
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(14).png?raw=true');
     }
 
     .banner-mobile {
-      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(10).png?raw=true');
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(14).png?raw=true');
     }
 
     @media (min-width: 769px) {
@@ -236,6 +260,11 @@
       .card-title {
         font-size: 0.95em;
       }
+
+      .animated-text-container {
+        font-size: 1.1em;
+        margin-left: 5px;
+      }
     }
   </style>
 </head>
@@ -252,6 +281,12 @@
   </header>
 
   <div class="container">
+    <!-- Texto animado acima do banner -->
+    <div class="animated-text-container">
+      <span class="static-text">🚀</span>
+      <span class="typing-text" id="typing"></span>
+    </div>
+
     <div class="banner banner-desktop"></div>
     <div class="banner banner-mobile"></div>
 
@@ -304,6 +339,39 @@
         card.style.display = texto.includes(termo) ? 'block' : 'none';
       });
     });
+
+    const frases = [
+      "Soluções inteligentes para sua empresa",
+      "Sites, apps e sistemas personalizados",
+      "Automatize seus processos com a CB Systems"
+    ];
+
+    let fraseIndex = 0;
+    let charIndex = 0;
+    let apagando = false;
+    const typingEl = document.getElementById("typing");
+
+    function digitar() {
+      const fraseAtual = frases[fraseIndex];
+
+      if (!apagando) {
+        typingEl.textContent = fraseAtual.substring(0, charIndex++);
+        if (charIndex > fraseAtual.length) {
+          apagando = true;
+          setTimeout(digitar, 1200);
+          return;
+        }
+      } else {
+        typingEl.textContent = fraseAtual.substring(0, charIndex--);
+        if (charIndex < 0) {
+          apagando = false;
+          fraseIndex = (fraseIndex + 1) % frases.length;
+        }
+      }
+      setTimeout(digitar, apagando ? 40 : 90);
+    }
+
+    digitar();
   </script>
 </body>
 </html>
