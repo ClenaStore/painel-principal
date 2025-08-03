@@ -2,9 +2,19 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>CB Systems - Serviços</title>
+  <title>CB Systems - Sistemas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    html, body {
+      height: 100%;
+      overflow: scroll;
+      scrollbar-width: none; /* Firefox */
+    }
+
+    body::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
     body {
       background: #0a0a0a;
       color: #00bfff;
@@ -154,8 +164,8 @@
 
   <div class="container">
     <div class="banner"></div>
-    <h1>Serviços</h1>
-    <p>Selecione os serviços que deseja incluir no seu projeto:</p>
+    <h1>Sistemas</h1>
+    <p>Selecione os sistemas que deseja incluir no seu projeto:</p>
 
     <div class="cards">
       <div class="card" onclick="toggleSelecionado(this)">
