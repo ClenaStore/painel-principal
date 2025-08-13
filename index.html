@@ -47,7 +47,6 @@
     }
     .menu-central a:hover { color: #fff; }
 
-    /* Botão Login na direita com neon */
     .btn-login {
       padding: 6px 14px;
       border: 2px solid #00bfff;
@@ -220,7 +219,7 @@
       document.getElementById('loginPopup').style.display = 'none';
     });
 
-    document.getElementById('entrarBtn').addEventListener('click', () => {
+    document.getElementById('entrarBtn').addEventListener('click', async () => {
       const usuario = document.getElementById('usuario').value.trim();
       const senha = document.getElementById('senha').value.trim();
       const lembrar = document.getElementById('lembrar').checked;
@@ -230,15 +229,26 @@
       erro.textContent = '';
       loading.style.display = 'block';
 
-      setTimeout(() => {
+      try {
+        const resp = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ usuario, senha })
+        });
+
+        const data = await resp.json();
         loading.style.display = 'none';
-        if (usuario === 'mercatto' && senha === '1234') {
+
+        if (data.sucesso) {
           if (lembrar) localStorage.setItem('usuarioLogado', usuario);
           window.location.href = `/usuarios/${usuario}/index.html`;
         } else {
-          erro.textContent = 'Usuário ou senha inválidos!';
+          erro.textContent = data.mensagem || 'Usuário ou senha inválidos!';
         }
-      }, 1500);
+      } catch (e) {
+        loading.style.display = 'none';
+        erro.textContent = 'Erro ao conectar ao servidor!';
+      }
     });
 
     window.addEventListener('load', () => {
