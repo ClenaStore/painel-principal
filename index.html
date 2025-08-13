@@ -120,6 +120,9 @@
       display: flex; justify-content: flex-end; align-items: center; gap: 5px;
       margin: 5px 0 10px;
     }
+    .lembrar-container input[type="checkbox"] {
+      width: 16px; height: 16px; cursor: pointer;
+    }
     .lembrar-container label {
       font-size: 0.9em; color: #ccc; cursor: pointer;
     }
@@ -183,8 +186,8 @@
       <input type="text" id="usuario" placeholder="Usuário">
       <input type="password" id="senha" placeholder="Senha">
       <div class="lembrar-container">
-        <label for="lembrar">Lembrar senha</label>
         <input type="checkbox" id="lembrar">
+        <label for="lembrar">Lembrar senha</label>
       </div>
       <button id="entrarBtn">Entrar</button>
       <div class="loading" id="loading"><span></span><span></span><span></span></div>
