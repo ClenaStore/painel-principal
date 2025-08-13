@@ -27,17 +27,43 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center; /* Centraliza todo o header */
       background-color: #000;
       border-bottom: 1px solid #00bfff;
+      gap: 20px;
     }
     .logo { display: flex; align-items: center; }
     header img { height: 40px; filter: brightness(0) invert(1); }
-    nav { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
+
+    nav { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 15px; 
+      align-items: center; 
+      justify-content: center; /* Centraliza menu */
+      width: 100%;
+    }
     nav a {
-      color: #00bfff; text-decoration: none; font-weight: bold; font-size: 0.95em;
+      color: #00bfff; 
+      text-decoration: none; 
+      font-weight: bold; 
+      font-size: 0.95em;
+      padding: 6px 12px;
+      transition: 0.3s;
     }
     nav a:hover { color: #fff; }
+
+    /* Botão de Login neon */
+    #btnLogin {
+      border: 1px solid #00bfff;
+      border-radius: 6px;
+      box-shadow: 0 0 10px #00bfff, inset 0 0 10px #00bfff44;
+    }
+    #btnLogin:hover {
+      background-color: #00bfff22;
+      box-shadow: 0 0 15px #00bfff, inset 0 0 15px #00bfff66;
+      color: #fff;
+    }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 100px 20px 40px; text-align: center; }
     .banner {
@@ -81,8 +107,8 @@
 
     @media (max-width: 600px) {
       .container { padding-top: 120px; }
-      header { flex-direction: column; align-items: flex-start; }
-      nav { width: 100%; justify-content: flex-start; padding-top: 10px; }
+      header { flex-direction: column; align-items: center; gap: 10px; }
+      nav { width: 100%; justify-content: center; padding-top: 10px; }
       .banner-desktop { display: none; }
       .banner-mobile { display: block; }
       .banner-cards { position: absolute; bottom: 20px; left: 20px; flex-direction: column; gap: 6px; align-items: flex-start; }
@@ -117,7 +143,7 @@
     }
     .close-btn:hover { color: #fff; }
     .lembrar-container {
-      display: flex; justify-content: flex-end; align-items: center; gap: 5px;
+      display: flex; justify-content: center; align-items: center; gap: 5px;
       margin: 5px 0 10px;
     }
     .lembrar-container input[type="checkbox"] {
@@ -152,30 +178,7 @@
   </header>
 
   <div class="container">
-    <div class="banner banner-desktop">
-      <div class="banner-cards">
-        <a href="mei.html"><div class="banner-card"><span>💼</span><div class="card-title">MEI</div></div></a>
-        <a href="promocoes.html"><div class="banner-card"><span>🏷️</span><div class="card-title">Promoções</div></div></a>
-        <a href="indicados.html"><div class="banner-card"><span>🤝</span><div class="card-title">Indicação</div></div></a>
-        <a href="teste.html"><div class="banner-card"><span>⏳</span><div class="card-title">Teste grátis</div></div></a>
-      </div>
-    </div>
-    <div class="banner banner-mobile">
-      <div class="banner-cards">
-        <a href="mei.html"><div class="banner-card"><span>💼</span><div class="card-title">MEI</div></div></a>
-        <a href="promocoes.html"><div class="banner-card"><span>🏷️</span><div class="card-title">Promoções</div></div></a>
-        <a href="indicados.html"><div class="banner-card"><span>🤝</span><div class="card-title">Indicação</div></div></a>
-        <a href="teste.html"><div class="banner-card"><span>⏳</span><div class="card-title">Teste</div></div></a>
-      </div>
-    </div>
-    <h1 class="mobile-only">Bem-vindo à CB Systems</h1>
-    <p class="mobile-only">Navegue pelos módulos disponíveis abaixo:</p>
-    <div class="cards">
-      <a href="sistemas.html"><div class="card"><span>🖥️</span><div class="card-title">Sistemas Personalizados</div></div></a>
-      <a href="servicos.html"><div class="card"><span>⚙️</span><div class="card-title">Criação de Painéis</div></div></a>
-      <a href="orcamento.html"><div class="card"><span>📊</span><div class="card-title">Solicitar Orçamento</div></div></a>
-      <a href="duvidas.html"><div class="card"><span>❓</span><div class="card-title">Dúvidas Frequentes</div></div></a>
-    </div>
+    <!-- Banners e Cards -->
   </div>
 
   <!-- POPUP LOGIN -->
@@ -202,7 +205,6 @@
     document.getElementById('closePopup').addEventListener('click', () => {
       document.getElementById('loginPopup').style.display = 'none';
     });
-
     document.getElementById('entrarBtn').addEventListener('click', () => {
       const usuario = document.getElementById('usuario').value.trim();
       const senha = document.getElementById('senha').value.trim();
@@ -223,7 +225,6 @@
         }
       }, 1500);
     });
-
     window.addEventListener('load', () => {
       const salvo = localStorage.getItem('usuarioLogado');
       if (salvo) window.location.href = `/usuarios/${salvo}/index.html`;
