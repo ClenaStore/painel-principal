@@ -1,130 +1,215 @@
-<!-- Adicionar no <nav> -->
-<a href="#" id="btnLogin">Login</a>
-
-<!-- POPUP LOGIN -->
-<div id="loginPopup" class="popup">
-  <div class="popup-content">
-    <h2>Bem-vindo à CB Systems</h2>
-    <input type="text" id="usuario" placeholder="Usuário">
-    <input type="password" id="senha" placeholder="Senha">
-    <label><input type="checkbox" id="lembrar"> Lembrar senha</label>
-    <button id="entrarBtn">Entrar</button>
-    <div class="loading" id="loading">
-      <span></span><span></span><span></span>
-    </div>
-    <p id="mensagemErro" style="color:red;"></p>
-  </div>
-</div>
-
-<style>
-/* Fundo do popup */
-.popup {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  z-index: 2000;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Conteúdo do popup */
-.popup-content {
-  background: #111;
-  padding: 20px;
-  border-radius: 12px;
-  width: 300px;
-  text-align: center;
-  border: 1px solid #00bfff;
-  box-shadow: 0 0 20px #00bfff55;
-}
-
-.popup-content h2 {
-  margin-bottom: 15px;
-  color: #00bfff;
-}
-
-.popup-content input {
-  width: 90%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 5px;
-  border: none;
-}
-
-.popup-content button {
-  background: #00bfff;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  width: 100%;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-.popup-content button:hover {
-  background: #0090c5;
-}
-
-/* Animação das 3 bolinhas */
-.loading {
-  display: none;
-  margin-top: 10px;
-}
-.loading span {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background: #00bfff;
-  border-radius: 50%;
-  margin: 0 3px;
-  animation: bounce 0.6s infinite alternate;
-}
-.loading span:nth-child(2) { animation-delay: 0.2s; }
-.loading span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes bounce {
-  to { transform: translateY(-8px); }
-}
-</style>
-
-<script>
-// Abrir popup
-document.getElementById('btnLogin').addEventListener('click', () => {
-  document.getElementById('loginPopup').style.display = 'flex';
-});
-
-// Função de login
-document.getElementById('entrarBtn').addEventListener('click', async () => {
-  const usuario = document.getElementById('usuario').value.trim();
-  const senha = document.getElementById('senha').value.trim();
-  const lembrar = document.getElementById('lembrar').checked;
-  const loading = document.getElementById('loading');
-  const erro = document.getElementById('mensagemErro');
-
-  erro.textContent = '';
-  loading.style.display = 'block';
-
-  // Simulação de chamada à API (vamos trocar depois pelo Vercel)
-  setTimeout(() => {
-    loading.style.display = 'none';
-    if (usuario === 'mercatto' && senha === '1234') {
-      if (lembrar) {
-        localStorage.setItem('usuarioLogado', usuario);
-      }
-      window.location.href = `/usuarios/${usuario}/index.html`;
-    } else {
-      erro.textContent = 'Usuário ou senha inválidos!';
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>CB Systems - Início</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" />
+  <style>
+    html, body {
+      height: 100%;
+      overflow: scroll;
+      scrollbar-width: none;
     }
-  }, 1500);
-});
+    body::-webkit-scrollbar { display: none; }
+    body {
+      background: #0a0a0a;
+      color: #00bfff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 15px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #000;
+      border-bottom: 1px solid #00bfff;
+    }
+    .logo { display: flex; align-items: center; }
+    header img { height: 40px; filter: brightness(0) invert(1); }
+    nav { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
+    nav a {
+      color: #00bfff; text-decoration: none; font-weight: bold; font-size: 0.95em;
+    }
+    nav a:hover { color: #fff; }
 
-// Auto login se lembrar senha
-window.addEventListener('load', () => {
-  const salvo = localStorage.getItem('usuarioLogado');
-  if (salvo) {
-    window.location.href = `/usuarios/${salvo}/index.html`;
-  }
-});
-</script>
+    .container { max-width: 1200px; margin: 0 auto; padding: 100px 20px 40px; text-align: center; }
+    .banner {
+      max-width: 100%; border: 2px solid #00bfff; border-radius: 12px;
+      box-shadow: 0 0 20px #00bfff33; margin: 0 auto 30px; position: relative; overflow: hidden;
+    }
+    .banner-desktop {
+      aspect-ratio: 12 / 5;
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(11).png?raw=true');
+      background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center;
+    }
+    .banner-mobile {
+      display: none;
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/CLENA.COM.BR.png?raw=true');
+      background-size: cover; background-position: center; aspect-ratio: 12 / 9; position: relative;
+    }
+    .banner-cards { position: absolute; bottom: 20px; left: 20px; display: flex; gap: 12px; flex-direction: row; }
+    .banner-card {
+      background-color: #000000cc; border: 1px dashed #00bfff; border-radius: 10px;
+      padding: 15px 10px; width: 120px; text-align: center; color: #fff;
+      transition: 0.3s; box-shadow: 0 0 10px #00bfff44;
+    }
+    .banner-card:hover { background-color: #00bfff22; transform: scale(1.05); }
+    .banner-card span { font-size: 1.5em; display: block; margin-bottom: 5px; }
+    .banner-card .card-title { font-size: 0.9em; font-weight: bold; color: #00bfff; }
+    h1 { font-size: 2em; margin: 20px 0 10px; }
+    p { font-size: 1em; color: #ccc; margin-bottom: 30px; }
+    .cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;
+    }
+    .card {
+      background-color: #111; border: 1px solid #00bfff33; border-radius: 12px;
+      padding: 20px 12px; text-align: center; color: #fff; transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00bfff22; cursor: pointer;
+    }
+    .card:hover { background-color: #00bfff11; box-shadow: 0 0 20px #00bfff99; transform: scale(1.03); }
+    .card span { font-size: 1.8em; display: block; margin-bottom: 10px; }
+    .card-title { font-size: 1em; font-weight: bold; color: #00bfff; }
+    .card a { text-decoration: none; color: inherit; }
+    .mobile-only { display: none; }
+
+    @media (max-width: 600px) {
+      .container { padding-top: 120px; }
+      header { flex-direction: column; align-items: flex-start; }
+      nav { width: 100%; justify-content: flex-start; padding-top: 10px; }
+      .banner-desktop { display: none; }
+      .banner-mobile { display: block; }
+      .banner-cards { position: absolute; bottom: 20px; left: 20px; flex-direction: column; gap: 6px; align-items: flex-start; }
+      .banner-card { width: 70px; padding: 8px 6px; font-size: 0.7em; }
+      .banner-card span { font-size: 1.1em; margin-bottom: 4px; }
+      .banner-card .card-title { font-size: 0.65em; }
+      .mobile-only { display: block; }
+    }
+    @media (min-width: 601px) { .mobile-only { display: none; } }
+
+    /* ===== POPUP LOGIN ===== */
+    .popup {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.6);
+      z-index: 2000; justify-content: center; align-items: center;
+    }
+    .popup-content {
+      background: #111; padding: 20px; border-radius: 12px; width: 300px; text-align: center;
+      border: 1px solid #00bfff; box-shadow: 0 0 20px #00bfff55;
+    }
+    .popup-content h2 { margin-bottom: 15px; color: #00bfff; }
+    .popup-content input {
+      width: 90%; padding: 10px; margin: 8px 0; border-radius: 5px; border: none;
+    }
+    .popup-content label { display: block; margin: 10px 0; font-size: 0.9em; color: #ccc; }
+    .popup-content button {
+      background: #00bfff; color: #fff; border: none; padding: 10px; width: 100%;
+      border-radius: 5px; cursor: pointer; font-weight: bold;
+    }
+    .popup-content button:hover { background: #0090c5; }
+
+    /* Loader bolinhas */
+    .loading { display: none; margin-top: 10px; }
+    .loading span {
+      display: inline-block; width: 8px; height: 8px; background: #00bfff;
+      border-radius: 50%; margin: 0 3px; animation: bounce 0.6s infinite alternate;
+    }
+    .loading span:nth-child(2) { animation-delay: 0.2s; }
+    .loading span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce { to { transform: translateY(-8px); } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
+    </div>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="orcamento.html">Orçamento</a>
+      <a href="sistemas.html">Sistemas</a>
+      <a href="duvidas.html">Dúvidas</a>
+      <a href="#" id="btnLogin">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="banner banner-desktop">
+      <div class="banner-cards">
+        <a href="mei.html"><div class="banner-card"><span>💼</span><div class="card-title">MEI</div></div></a>
+        <a href="promocoes.html"><div class="banner-card"><span>🏷️</span><div class="card-title">Promoções</div></div></a>
+        <a href="indicados.html"><div class="banner-card"><span>🤝</span><div class="card-title">Indicação</div></div></a>
+        <a href="teste.html"><div class="banner-card"><span>⏳</span><div class="card-title">Teste grátis</div></div></a>
+      </div>
+    </div>
+    <div class="banner banner-mobile">
+      <div class="banner-cards">
+        <a href="mei.html"><div class="banner-card"><span>💼</span><div class="card-title">MEI</div></div></a>
+        <a href="promocoes.html"><div class="banner-card"><span>🏷️</span><div class="card-title">Promoções</div></div></a>
+        <a href="indicados.html"><div class="banner-card"><span>🤝</span><div class="card-title">Indicação</div></div></a>
+        <a href="teste.html"><div class="banner-card"><span>⏳</span><div class="card-title">Teste</div></div></a>
+      </div>
+    </div>
+    <h1 class="mobile-only">Bem-vindo à CB Systems</h1>
+    <p class="mobile-only">Navegue pelos módulos disponíveis abaixo:</p>
+    <div class="cards">
+      <a href="sistemas.html"><div class="card"><span>🖥️</span><div class="card-title">Sistemas Personalizados</div></div></a>
+      <a href="servicos.html"><div class="card"><span>⚙️</span><div class="card-title">Criação de Painéis</div></div></a>
+      <a href="orcamento.html"><div class="card"><span>📊</span><div class="card-title">Solicitar Orçamento</div></div></a>
+      <a href="duvidas.html"><div class="card"><span>❓</span><div class="card-title">Dúvidas Frequentes</div></div></a>
+    </div>
+  </div>
+
+  <!-- POPUP LOGIN -->
+  <div id="loginPopup" class="popup">
+    <div class="popup-content">
+      <h2>Bem-vindo à CB Systems</h2>
+      <input type="text" id="usuario" placeholder="Usuário">
+      <input type="password" id="senha" placeholder="Senha">
+      <label><input type="checkbox" id="lembrar"> Lembrar senha</label>
+      <button id="entrarBtn">Entrar</button>
+      <div class="loading" id="loading"><span></span><span></span><span></span></div>
+      <p id="mensagemErro" style="color:red;"></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('btnLogin').addEventListener('click', () => {
+      document.getElementById('loginPopup').style.display = 'flex';
+    });
+
+    document.getElementById('entrarBtn').addEventListener('click', async () => {
+      const usuario = document.getElementById('usuario').value.trim();
+      const senha = document.getElementById('senha').value.trim();
+      const lembrar = document.getElementById('lembrar').checked;
+      const loading = document.getElementById('loading');
+      const erro = document.getElementById('mensagemErro');
+
+      erro.textContent = '';
+      loading.style.display = 'block';
+
+      setTimeout(() => {
+        loading.style.display = 'none';
+        if (usuario === 'mercatto' && senha === '1234') {
+          if (lembrar) localStorage.setItem('usuarioLogado', usuario);
+          window.location.href = `/usuarios/${usuario}/index.html`;
+        } else {
+          erro.textContent = 'Usuário ou senha inválidos!';
+        }
+      }, 1500);
+    });
+
+    window.addEventListener('load', () => {
+      const salvo = localStorage.getItem('usuarioLogado');
+      if (salvo) window.location.href = `/usuarios/${salvo}/index.html`;
+    });
+  </script>
+</body>
+</html>
