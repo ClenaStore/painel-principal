@@ -25,44 +25,43 @@
       z-index: 1000;
       padding: 15px 20px;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: center; /* Centraliza todo o header */
+      justify-content: space-between;
       background-color: #000;
       border-bottom: 1px solid #00bfff;
-      gap: 20px;
     }
     .logo { display: flex; align-items: center; }
     header img { height: 40px; filter: brightness(0) invert(1); }
 
-    nav { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 15px; 
-      align-items: center; 
-      justify-content: center; /* Centraliza menu */
-      width: 100%;
+    .menu-central {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-grow: 1;
     }
-    nav a {
-      color: #00bfff; 
-      text-decoration: none; 
-      font-weight: bold; 
+    .menu-central a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
       font-size: 0.95em;
-      padding: 6px 12px;
+    }
+    .menu-central a:hover { color: #fff; }
+
+    /* Botão Login na direita com neon */
+    .btn-login {
+      padding: 6px 14px;
+      border: 2px solid #00bfff;
+      border-radius: 8px;
+      color: #00bfff;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 10px #00bfff, inset 0 0 10px #00bfff;
       transition: 0.3s;
     }
-    nav a:hover { color: #fff; }
-
-    /* Botão de Login neon */
-    #btnLogin {
-      border: 1px solid #00bfff;
-      border-radius: 6px;
-      box-shadow: 0 0 10px #00bfff, inset 0 0 10px #00bfff44;
-    }
-    #btnLogin:hover {
-      background-color: #00bfff22;
-      box-shadow: 0 0 15px #00bfff, inset 0 0 15px #00bfff66;
+    .btn-login:hover {
+      background: #00bfff22;
       color: #fff;
+      box-shadow: 0 0 20px #00bfff, inset 0 0 15px #00bfff;
     }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 100px 20px 40px; text-align: center; }
@@ -107,17 +106,14 @@
 
     @media (max-width: 600px) {
       .container { padding-top: 120px; }
-      header { flex-direction: column; align-items: center; gap: 10px; }
-      nav { width: 100%; justify-content: center; padding-top: 10px; }
+      header { flex-wrap: wrap; }
+      .menu-central { order: 3; width: 100%; justify-content: center; margin-top: 10px; }
+      .btn-login { order: 2; margin-left: auto; }
       .banner-desktop { display: none; }
       .banner-mobile { display: block; }
       .banner-cards { position: absolute; bottom: 20px; left: 20px; flex-direction: column; gap: 6px; align-items: flex-start; }
-      .banner-card { width: 70px; padding: 8px 6px; font-size: 0.7em; }
-      .banner-card span { font-size: 1.1em; margin-bottom: 4px; }
-      .banner-card .card-title { font-size: 0.65em; }
       .mobile-only { display: block; }
     }
-    @media (min-width: 601px) { .mobile-only { display: none; } }
 
     /* ===== POPUP LOGIN ===== */
     .popup {
@@ -141,17 +137,12 @@
     .close-btn {
       position: absolute; top: 8px; right: 12px; font-size: 1.5em; color: #00bfff; cursor: pointer;
     }
-    .close-btn:hover { color: #fff; }
     .lembrar-container {
-      display: flex; justify-content: center; align-items: center; gap: 5px;
+      display: flex; align-items: center; gap: 5px; justify-content: center;
       margin: 5px 0 10px;
     }
-    .lembrar-container input[type="checkbox"] {
-      width: 16px; height: 16px; cursor: pointer;
-    }
-    .lembrar-container label {
-      font-size: 0.9em; color: #ccc; cursor: pointer;
-    }
+    .lembrar-container input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
+    .lembrar-container label { font-size: 0.9em; color: #ccc; cursor: pointer; }
     .loading { display: none; margin-top: 10px; }
     .loading span {
       display: inline-block; width: 8px; height: 8px; background: #00bfff;
@@ -167,18 +158,41 @@
     <div class="logo">
       <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
     </div>
-    <nav>
+    <nav class="menu-central">
       <a href="index.html">Início</a>
       <a href="servicos.html">Serviços</a>
       <a href="orcamento.html">Orçamento</a>
       <a href="sistemas.html">Sistemas</a>
       <a href="duvidas.html">Dúvidas</a>
-      <a href="#" id="btnLogin">Login</a>
     </nav>
+    <a href="#" id="btnLogin" class="btn-login">Login</a>
   </header>
 
   <div class="container">
-    <!-- Banners e Cards -->
+    <div class="banner banner-desktop">
+      <div class="banner-cards">
+        <a href="mei.html"><div class="banner-card"><span>💼</span><div class="card-title">MEI</div></div></a>
+        <a href="promocoes.html"><div class="banner-card"><span>🏷️</span><div class="card-title">Promoções</div></div></a>
+        <a href="indicados.html"><div class="banner-card"><span>🤝</span><div class="card-title">Indicação</div></div></a>
+        <a href="teste.html"><div class="banner-card"><span>⏳</span><div class="card-title">Teste grátis</div></div></a>
+      </div>
+    </div>
+    <div class="banner banner-mobile">
+      <div class="banner-cards">
+        <a href="mei.html"><div class="banner-card"><span>💼</span><div class="card-title">MEI</div></div></a>
+        <a href="promocoes.html"><div class="banner-card"><span>🏷️</span><div class="card-title">Promoções</div></div></a>
+        <a href="indicados.html"><div class="banner-card"><span>🤝</span><div class="card-title">Indicação</div></div></a>
+        <a href="teste.html"><div class="banner-card"><span>⏳</span><div class="card-title">Teste</div></div></a>
+      </div>
+    </div>
+    <h1 class="mobile-only">Bem-vindo à CB Systems</h1>
+    <p class="mobile-only">Navegue pelos módulos disponíveis abaixo:</p>
+    <div class="cards">
+      <a href="sistemas.html"><div class="card"><span>🖥️</span><div class="card-title">Sistemas Personalizados</div></div></a>
+      <a href="servicos.html"><div class="card"><span>⚙️</span><div class="card-title">Criação de Painéis</div></div></a>
+      <a href="orcamento.html"><div class="card"><span>📊</span><div class="card-title">Solicitar Orçamento</div></div></a>
+      <a href="duvidas.html"><div class="card"><span>❓</span><div class="card-title">Dúvidas Frequentes</div></div></a>
+    </div>
   </div>
 
   <!-- POPUP LOGIN -->
@@ -205,6 +219,7 @@
     document.getElementById('closePopup').addEventListener('click', () => {
       document.getElementById('loginPopup').style.display = 'none';
     });
+
     document.getElementById('entrarBtn').addEventListener('click', () => {
       const usuario = document.getElementById('usuario').value.trim();
       const senha = document.getElementById('senha').value.trim();
@@ -225,6 +240,7 @@
         }
       }, 1500);
     });
+
     window.addEventListener('load', () => {
       const salvo = localStorage.getItem('usuarioLogado');
       if (salvo) window.location.href = `/usuarios/${salvo}/index.html`;
