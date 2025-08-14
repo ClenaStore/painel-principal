@@ -46,7 +46,6 @@
     }
     nav a:hover { color: #fff; }
 
-    /* Botão login neon */
     .login-btn {
       padding: 6px 14px;
       border: 1px solid #00bfff;
@@ -90,7 +89,6 @@
       background-size: cover;
       background-position: center;
       aspect-ratio: 12 / 9;
-      position: relative;
     }
     .banner-cards {
       position: absolute;
@@ -116,31 +114,6 @@
     }
     .banner-card span { font-size: 1.5em; display: block; margin-bottom: 5px; }
     .banner-card .card-title { font-size: 0.9em; font-weight: bold; color: #00bfff; }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
-    }
-    .card {
-      background-color: #111;
-      border: 1px solid #00bfff33;
-      border-radius: 12px;
-      padding: 20px 12px;
-      text-align: center;
-      color: #fff;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px #00bfff22;
-      cursor: pointer;
-    }
-    .card:hover {
-      background-color: #00bfff11;
-      box-shadow: 0 0 20px #00bfff99;
-      transform: scale(1.03);
-    }
-    .card span { font-size: 1.8em; display: block; margin-bottom: 10px; }
-    .card-title { font-size: 1em; font-weight: bold; color: #00bfff; }
-    .card a { text-decoration: none; color: inherit; }
 
     .mobile-only { display: none; }
     @media (max-width: 600px) {
@@ -180,9 +153,7 @@
       border: none;
       background: #eaeef5;
     }
-    .password-container {
-      position: relative;
-    }
+    .password-container { position: relative; }
     .toggle-password {
       position: absolute;
       right: 10px;
@@ -235,9 +206,9 @@
   <div class="popup-overlay" id="popupLogin">
     <div class="popup">
       <h2>Bem-vindo à CB Systems</h2>
-      <input type="email" id="email" placeholder="Email" />
+      <input type="text" id="usuario" placeholder="Usuário" />
       <div class="password-container">
-        <input type="password" id="password" placeholder="Senha" />
+        <input type="password" id="senha" placeholder="Senha" />
         <span class="toggle-password" onclick="togglePassword()">👁</span>
       </div>
       <label><input type="checkbox" id="remember"> Lembrar senha</label>
@@ -250,26 +221,31 @@
   const popup = document.getElementById("popupLogin");
   function abrirLogin(){ popup.style.display = "flex"; }
   function togglePassword(){
-    const pass = document.getElementById("password");
+    const pass = document.getElementById("senha");
     pass.type = pass.type === "password" ? "text" : "password";
   }
   document.addEventListener("keydown", e=>{
     if(e.key==="Enter" && popup.style.display==="flex"){ login(); }
   });
   async function login(){
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+    const usuario = document.getElementById("usuario").value.trim();
+    const senha = document.getElementById("senha").value.trim();
     const errorMsg = document.getElementById("errorMsg");
     errorMsg.textContent = "";
     try{
-      const res = await fetch("https://painel-principal.vercel.app/api/login",{
+      const res = await fetch("/api/login",{
         method:"POST",
         headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ usuario, senha })
       });
       if(!res.ok) throw new Error("Falha na conexão");
       const data = await res.json();
-      if(data.success){ window.location.href = "painel.html"; }
+      if(data.sucesso){
+        if(usuario.toLowerCase() === "mercatto") window.location.href = "painel-mercatto.html";
+        else if(usuario.toLowerCase() === "villa") window.location.href = "painel-villa.html";
+        else if(usuario.toLowerCase() === "padaria") window.location.href = "painel-padaria.html";
+        else window.location.href = "painel.html";
+      }
       else{ errorMsg.textContent = "Usuário ou senha inválidos!"; }
     }catch(err){
       errorMsg.textContent = "Erro ao conectar ao servidor!";
