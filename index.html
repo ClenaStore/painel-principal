@@ -234,7 +234,7 @@
     const errorMsg = document.getElementById("errorMsg");
     errorMsg.textContent = "";
     try{
-      const res = await fetch("https://SEU-painel-principal.vercel.app/api/login",{
+      const res = await fetch("https://painel-principal.vercel.app/api/login",{
         method:"POST",
         headers:{ "Content-Type":"application/json" },
         body: JSON.stringify({ usuario, senha })
