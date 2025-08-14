@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>CB Systems - Início</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body>
+  <h1>Login CB Systems</h1>
+  <input type="text" id="usuario" placeholder="Usuário">
+  <input type="password" id="senha" placeholder="Senha">
+  <button onclick="login()">Entrar</button>
+  <p id="mensagem"></p>
+  <script>
+    async function login(){
+      const usuario = document.getElementById('usuario').value;
+      const senha = document.getElementById('senha').value;
+      const msg = document.getElementById('mensagem');
+      msg.textContent = '';
+      try{
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ usuario, senha })
+        });
+        const data = await res.json();
+        if(data.sucesso){
+          msg.textContent = 'Login realizado com sucesso!';
+        } else {
+          msg.textContent = 'Usuário ou senha inválidos';
+        }
+      }catch(e){
+        msg.textContent = 'Erro ao conectar ao servidor!';
+      }
+    }
+  </script>
+</body>
+</html>
