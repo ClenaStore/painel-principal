@@ -1,230 +1,280 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CB Systems</title>
-<style>
+  <meta charset="UTF-8" />
+  <title>CB Systems - Início</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" />
+  <style>
+    html, body {
+      height: 100%;
+      overflow: scroll;
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar { display: none; }
+
     body {
-        margin: 0;
-        background-color: #0a0a0a;
-        color: #fff;
-        font-family: Arial, sans-serif;
+      background: #0a0a0a;
+      color: #00bfff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
-    /* Barra de navegação */
     header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 20px;
-        background-color: #000;
-        border-bottom: 1px solid #00d1ff;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 15px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #000;
+      border-bottom: 1px solid #00bfff;
     }
-    .nav-links {
-        display: flex;
-        gap: 15px;
+
+    .logo { display: flex; align-items: center; }
+    header img { height: 40px; filter: brightness(0) invert(1); }
+
+    nav { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
+    nav a {
+      color: #00bfff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95em;
     }
-    .nav-links a {
-        color: #00bfff;
-        text-decoration: none;
-        font-weight: bold;
-    }
-    /* Botão login */
+    nav a:hover { color: #fff; }
+
+    /* Botão login neon */
     .login-btn {
-        padding: 6px 14px;
-        border: 2px solid #00d1ff;
-        border-radius: 8px;
-        background: transparent;
-        color: #00d1ff;
-        cursor: pointer;
-        box-shadow: 0 0 8px #00d1ff;
-        transition: 0.3s;
+      padding: 6px 14px;
+      border: 1px solid #00bfff;
+      border-radius: 8px;
+      color: #00bfff;
+      background: transparent;
+      cursor: pointer;
+      transition: 0.3s;
     }
     .login-btn:hover {
-        background-color: #00d1ff;
-        color: #000;
+      background: #00bfff33;
+      box-shadow: 0 0 10px #00bfff;
     }
 
-    /* Modal */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0; top: 0;
-        width: 100%; height: 100%;
-        background-color: rgba(0,0,0,0.7);
-        justify-content: center;
-        align-items: center;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 20px 40px;
+      text-align: center;
     }
-    .modal-content {
-        background-color: #111;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 15px #00d1ff;
-        width: 300px;
-        position: relative;
+
+    .banner {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #00bfff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00bfff33;
+      margin: 0 auto 30px;
+      position: relative;
+      overflow: hidden;
     }
-    .modal-content h2 {
-        text-align: center;
-        color: #00d1ff;
+    .banner-desktop {
+      aspect-ratio: 12 / 5;
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(11).png?raw=true');
+      background-size: cover;
+      background-position: center;
     }
-    .close {
-        position: absolute;
-        top: 10px; right: 10px;
-        font-size: 20px;
-        cursor: pointer;
-        color: #00d1ff;
+    .banner-mobile {
+      display: none;
+      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/CLENA.COM.BR.png?raw=true');
+      background-size: cover;
+      background-position: center;
+      aspect-ratio: 12 / 9;
+      position: relative;
     }
-    .form-group {
-        position: relative;
-        margin-bottom: 15px;
+    .banner-cards {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      gap: 12px;
     }
-    input[type="email"], input[type="password"] {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 6px;
-        background-color: #e6f0ff;
-        color: #000;
-        font-size: 14px;
+    .banner-card {
+      background-color: #000000cc;
+      border: 1px dashed #00bfff;
+      border-radius: 10px;
+      padding: 15px 10px;
+      width: 120px;
+      text-align: center;
+      color: #fff;
+      transition: 0.3s;
+      box-shadow: 0 0 10px #00bfff44;
     }
-    /* Ícone olho */
+    .banner-card:hover {
+      background-color: #00bfff22;
+      transform: scale(1.05);
+    }
+    .banner-card span { font-size: 1.5em; display: block; margin-bottom: 5px; }
+    .banner-card .card-title { font-size: 0.9em; font-weight: bold; color: #00bfff; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background-color: #111;
+      border: 1px solid #00bfff33;
+      border-radius: 12px;
+      padding: 20px 12px;
+      text-align: center;
+      color: #fff;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00bfff22;
+      cursor: pointer;
+    }
+    .card:hover {
+      background-color: #00bfff11;
+      box-shadow: 0 0 20px #00bfff99;
+      transform: scale(1.03);
+    }
+    .card span { font-size: 1.8em; display: block; margin-bottom: 10px; }
+    .card-title { font-size: 1em; font-weight: bold; color: #00bfff; }
+    .card a { text-decoration: none; color: inherit; }
+
+    .mobile-only { display: none; }
+    @media (max-width: 600px) {
+      .container { padding-top: 120px; }
+      header { flex-direction: column; align-items: flex-start; }
+      nav { width: 100%; padding-top: 10px; }
+      .banner-desktop { display: none; }
+      .banner-mobile { display: block; }
+      .mobile-only { display: block; }
+    }
+
+    /* Popup Login */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .popup {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #00bfff;
+      box-shadow: 0 0 15px #00bfff;
+      width: 300px;
+      text-align: center;
+    }
+    .popup h2 { color: #00bfff; margin-bottom: 15px; }
+    .popup input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: none;
+      background: #eaeef5;
+    }
+    .password-container {
+      position: relative;
+    }
     .toggle-password {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 20px;
-        height: 14px;
-        cursor: pointer;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #555;
     }
-    .toggle-password svg {
-        fill: none;
-        stroke: #555;
-        stroke-width: 2;
+    .popup button {
+      width: 100%;
+      padding: 10px;
+      background: #00bfff;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
     }
-
-    .checkbox {
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-    }
-    .checkbox input {
-        margin-right: 5px;
-    }
-    .btn-submit {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 6px;
-        background-color: #00bfff;
-        color: #fff;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    .error-message {
-        color: red;
-        text-align: center;
-        margin-top: 10px;
-    }
-</style>
+    .popup button:hover { background: #0099cc; }
+    .popup .error { color: red; font-size: 0.9em; margin-top: 8px; }
+  </style>
 </head>
 <body>
-
-<header>
-    <img src="logo.png" alt="Logo CB Systems" style="height:40px;">
-    <nav class="nav-links">
-        <a href="#">Início</a>
-        <a href="#">Serviços</a>
-        <a href="#">Orçamento</a>
-        <a href="#">Sistemas</a>
-        <a href="#">Dúvidas</a>
-    </nav>
-    <button class="login-btn" id="openLogin">Login</button>
-</header>
-
-<!-- Modal de Login -->
-<div class="modal" id="loginModal">
-    <div class="modal-content">
-        <span class="close" id="closeLogin">&times;</span>
-        <h2>Bem-vindo à CB Systems</h2>
-        <div class="form-group">
-            <input type="email" id="email" placeholder="Seu e-mail">
-        </div>
-        <div class="form-group">
-            <input type="password" id="password" placeholder="Sua senha">
-            <span class="toggle-password" id="togglePassword">
-                <svg viewBox="0 0 24 24">
-                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-            </span>
-        </div>
-        <div class="checkbox">
-            <input type="checkbox" id="remember">
-            <label for="remember">Lembrar senha</label>
-        </div>
-        <button class="btn-submit" id="loginBtn">Entrar</button>
-        <div class="error-message" id="errorMsg"></div>
+  <header>
+    <div class="logo">
+      <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
     </div>
-</div>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="orcamento.html">Orçamento</a>
+      <a href="sistemas.html">Sistemas</a>
+      <a href="duvidas.html">Dúvidas</a>
+      <button class="login-btn" onclick="abrirLogin()">Login</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="banner banner-desktop">
+      <div class="banner-cards">
+        <a href="mei.html"><div class="banner-card"><span>💼</span><div class="card-title">MEI</div></div></a>
+        <a href="promocoes.html"><div class="banner-card"><span>🏷️</span><div class="card-title">Promoções</div></div></a>
+        <a href="indicados.html"><div class="banner-card"><span>🤝</span><div class="card-title">Indicação</div></div></a>
+        <a href="teste.html"><div class="banner-card"><span>⏳</span><div class="card-title">Teste grátis</div></div></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Login -->
+  <div class="popup-overlay" id="popupLogin">
+    <div class="popup">
+      <h2>Bem-vindo à CB Systems</h2>
+      <input type="email" id="email" placeholder="Email" />
+      <div class="password-container">
+        <input type="password" id="password" placeholder="Senha" />
+        <span class="toggle-password" onclick="togglePassword()">👁</span>
+      </div>
+      <label><input type="checkbox" id="remember"> Lembrar senha</label>
+      <button onclick="login()">Entrar</button>
+      <div class="error" id="errorMsg"></div>
+    </div>
+  </div>
 
 <script>
-    const loginModal = document.getElementById("loginModal");
-    const openLogin = document.getElementById("openLogin");
-    const closeLogin = document.getElementById("closeLogin");
-    const loginBtn = document.getElementById("loginBtn");
+  const popup = document.getElementById("popupLogin");
+  function abrirLogin(){ popup.style.display = "flex"; }
+  function togglePassword(){
+    const pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+  }
+  document.addEventListener("keydown", e=>{
+    if(e.key==="Enter" && popup.style.display==="flex"){ login(); }
+  });
+  async function login(){
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
     const errorMsg = document.getElementById("errorMsg");
-
-    openLogin.onclick = () => loginModal.style.display = "flex";
-    closeLogin.onclick = () => loginModal.style.display = "none";
-    window.onclick = (e) => { if (e.target == loginModal) loginModal.style.display = "none"; };
-
-    // Alternar senha visível
-    document.getElementById("togglePassword").onclick = () => {
-        const pass = document.getElementById("password");
-        pass.type = pass.type === "password" ? "text" : "password";
-    };
-
-    // Login com Enter
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" && loginModal.style.display === "flex") {
-            login();
-        }
-    });
-
-    // Login com botão
-    loginBtn.onclick = () => login();
-
-    function login() {
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value.trim();
-        errorMsg.textContent = "";
-
-        if (!email || !password) {
-            errorMsg.textContent = "Preencha todos os campos!";
-            return;
-        }
-
-        fetch("https://painel-principal.vercel.app/api/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = data.redirect || "/painel.html";
-            } else {
-                errorMsg.textContent = data.message || "Usuário ou senha inválidos!";
-            }
-        })
-        .catch(() => {
-            errorMsg.textContent = "Erro ao conectar ao servidor!";
-        });
+    errorMsg.textContent = "";
+    try{
+      const res = await fetch("https://SEU_PROJETO.vercel.app/api/login",{
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({ email, password })
+      });
+      if(!res.ok) throw new Error("Falha na conexão");
+      const data = await res.json();
+      if(data.success){ window.location.href = "painel.html"; }
+      else{ errorMsg.textContent = "Usuário ou senha inválidos!"; }
+    }catch(err){
+      errorMsg.textContent = "Erro ao conectar ao servidor!";
     }
+  }
 </script>
-
 </body>
 </html>
