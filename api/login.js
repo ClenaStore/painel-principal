@@ -1,54 +1,17 @@
-// login.js
-const popup = document.getElementById("popupLogin");
-
-function abrirLogin() {
-  popup.style.display = "flex";
-}
-
-function togglePassword() {
-  const pass = document.getElementById("senha");
-  pass.type = pass.type === "password" ? "text" : "password";
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Enter" && popup.style.display === "flex") {
-    login();
+export default function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ sucesso: false, mensagem: 'Método não permitido' });
   }
-});
 
-async function login() {
-  const usuario = document.getElementById("usuario").value.trim();
-  const senha = document.getElementById("senha").value.trim();
-  const errorMsg = document.getElementById("errorMsg");
+  const { usuario, senha } = req.body;
 
-  errorMsg.textContent = "";
+  // Pegando credenciais do painel da Vercel (Configurar em Settings → Environment Variables)
+  const userEnv = process.env[`USER_${usuario.toUpperCase()}`];
+  const passEnv = process.env[`PASS_${usuario.toUpperCase()}`];
 
-  try {
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ usuario, senha })
-    });
-
-    if (!res.ok) throw new Error("Falha na conexão");
-
-    const data = await res.json();
-
-    if (data.sucesso) {
-      // Redireciona para painel específico do usuário
-      if (usuario.toLowerCase() === "mercatto") {
-        window.location.href = "painel-mercatto.html";
-      } else if (usuario.toLowerCase() === "villa") {
-        window.location.href = "painel-villa.html";
-      } else if (usuario.toLowerCase() === "padaria") {
-        window.location.href = "painel-padaria.html";
-      } else {
-        window.location.href = "painel.html";
-      }
-    } else {
-      errorMsg.textContent = "Usuário ou senha inválidos!";
-    }
-  } catch (err) {
-    errorMsg.textContent = "Erro ao conectar ao servidor!";
+  if (userEnv && passEnv && senha === passEnv) {
+    return res.status(200).json({ sucesso: true });
+  } else {
+    return res.status(401).json({ sucesso: false, mensagem: 'Usuário ou senha inválidos' });
   }
 }
