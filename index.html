@@ -2,256 +2,316 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>CB Systems - Início</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>CB Systems • Início</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" />
   <style>
-    html, body {
-      height: 100%;
-      overflow: scroll;
-      scrollbar-width: none;
+    :root{
+      --bg:#05060b;           /* fundo profundo */
+      --panel:#0a0d14;        /* cartões / painéis */
+      --line:#1b2333;         /* linhas sutis */
+      --text:#e8f1ff;         /* texto primário */
+      --muted:#a6b2c6;        /* texto secundário */
+      --brand:#00bfff;        /* ciano */
+      --brand-2:#69f7ff;      /* ciano claro */
+      --accent:#7c4dff;       /* violeta */
+      --danger:#ff5a7a;
+      --ok:#28e0a5;
+      --shadow:0 15px 50px rgba(0,0,0,.35);
+      --glow:0 0 0 rgba(0,191,255,.0), 0 0 0 rgba(124,77,255,.0);
     }
-    body::-webkit-scrollbar { display: none; }
-
-    body {
-      background: #0a0a0a;
-      color: #00bfff;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 15px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #000;
-      border-bottom: 1px solid #00bfff;
-    }
-
-    .logo { display: flex; align-items: center; }
-    header img { height: 40px; filter: brightness(0) invert(1); }
-
-    nav { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; }
-    nav a {
-      color: #00bfff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.95em;
-    }
-    nav a:hover { color: #fff; }
-
-    .login-btn {
-      padding: 6px 14px;
-      border: 1px solid #00bfff;
-      border-radius: 8px;
-      color: #00bfff;
-      background: transparent;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .login-btn:hover {
-      background: #00bfff33;
-      box-shadow: 0 0 10px #00bfff;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(124,77,255,.22), transparent 40%),
+        radial-gradient(900px 700px at 110% 10%, rgba(0,191,255,.18), transparent 40%),
+        radial-gradient(800px 500px at 50% 120%, rgba(0,255,170,.15), transparent 45%),
+        var(--bg);
+      background-attachment: fixed;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 20px 40px;
-      text-align: center;
+    /* ——— Header ——— */
+    header{
+      position:sticky; top:0; inset-inline:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:linear-gradient(180deg, rgba(10,13,20,.85), rgba(10,13,20,.6));
+      border-bottom:1px solid color-mix(in srgb, var(--brand) 20%, transparent);
+      padding:14px 18px;
+      display:flex; align-items:center; gap:14px; justify-content:space-between;
+    }
+    .logo{display:flex; align-items:center; gap:10px}
+    .logo img{height:36px; filter:drop-shadow(0 0 8px rgba(0,191,255,.35)) brightness(0) invert(1)}
+    .wordmark{font-weight:700; letter-spacing:.4px; font-size:15px; opacity:.9}
+
+    nav{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+    .nav-link{
+      --_c:color-mix(in srgb, var(--text) 80%, var(--brand) 20%);
+      color:var(--_c); text-decoration:none; font-weight:600; font-size:.95rem;
+      padding:8px 10px; border-radius:10px; position:relative;
+      transition:transform .2s ease, color .2s ease, background .2s ease;
+      isolation:isolate;
+    }
+    .nav-link:before{
+      content:""; position:absolute; inset:0; border-radius:inherit; z-index:-1;
+      background:linear-gradient(120deg, color-mix(in srgb, var(--brand) 20%, transparent), transparent 35%, color-mix(in srgb, var(--accent) 20%, transparent));
+      opacity:.0; transition:opacity .25s ease;
+    }
+    .nav-link:hover{color:var(--text); transform:translateY(-1px)}
+    .nav-link:hover:before{opacity:.25}
+
+    .login-btn{
+      padding:8px 14px; border-radius:12px; border:1px solid color-mix(in srgb, var(--brand) 55%, transparent);
+      color:var(--brand); background:linear-gradient(180deg, rgba(0,191,255,.08), rgba(124,77,255,.08));
+      cursor:pointer; font-weight:700; letter-spacing:.3px;
+      box-shadow:0 0 0 0 rgba(0,191,255,.0); transition:box-shadow .25s ease, transform .15s ease;
+    }
+    .login-btn:hover{ box-shadow:0 0 25px rgba(0,191,255,.2); transform:translateY(-1px) }
+
+    /* ——— Hero / Banner ——— */
+    .container{ max-width:1200px; margin-inline:auto; padding:40px 16px 80px }
+    .hero{ position:relative; margin-top:22px }
+
+    .banner{
+      position:relative; border-radius:18px; overflow:hidden; border:1px solid var(--line);
+      background:linear-gradient(180deg, #0b0f18, #070a12);
+      box-shadow:var(--shadow);
+    }
+    .banner-desktop{ aspect-ratio: 12 / 5; }
+    .banner-mobile{ display:none; aspect-ratio:12/9 }
+
+    /* imagem de fundo inline para manter sua estrutura */
+    .banner-img{
+      position:absolute; inset:0; background-size:cover; background-position:center; filter:saturate(105%);
+      transform:scale(1.02); will-change:transform;
     }
 
-    .banner {
-      max-width: 100%;
-      height: auto;
-      border: 2px solid #00bfff;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #00bfff33;
-      margin: 0 auto 30px;
-      position: relative;
-      overflow: hidden;
+    /* borda neon animada */
+    .neon-border{ position:absolute; inset:0; border-radius:18px; pointer-events:none }
+    .neon-border:before{
+      content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px; mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      background:
+        conic-gradient(from var(--ang,0deg), var(--brand), var(--accent), var(--brand));
+      filter:blur(6px) saturate(140%);
+      animation:spin 12s linear infinite;
     }
-    .banner-desktop {
-      aspect-ratio: 12 / 5;
-      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(11).png?raw=true');
-      background-size: cover;
-      background-position: center;
-    }
-    .banner-mobile {
-      display: none;
-      background-image: url('https://github.com/ClenaStore/painel-principal/blob/main/img/CLENA.COM.BR.png?raw=true');
-      background-size: cover;
-      background-position: center;
-      aspect-ratio: 12 / 9;
-    }
-    .banner-cards {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      display: flex;
-      gap: 12px;
-    }
-    .banner-card {
-      background-color: #000000cc;
-      border: 1px dashed #00bfff;
-      border-radius: 10px;
-      padding: 15px 10px;
-      width: 120px;
-      text-align: center;
-      color: #fff;
-      transition: 0.3s;
-      box-shadow: 0 0 10px #00bfff44;
-    }
-    .banner-card:hover {
-      background-color: #00bfff22;
-      transform: scale(1.05);
-    }
-    .banner-card span { font-size: 1.5em; display: block; margin-bottom: 5px; }
-    .banner-card .card-title { font-size: 0.9em; font-weight: bold; color: #00bfff; }
+    @keyframes spin{ to{ --ang:360deg } }
 
-    .mobile-only { display: none; }
-    @media (max-width: 600px) {
-      .container { padding-top: 120px; }
-      header { flex-direction: column; align-items: flex-start; }
-      nav { width: 100%; padding-top: 10px; }
-      .banner-desktop { display: none; }
-      .banner-mobile { display: block; }
-      .mobile-only { display: block; }
+    /* partículas sutis */
+    .particles{ position:absolute; inset:0; overflow:hidden; pointer-events:none; mix-blend-mode:screen }
+    .dot{ position:absolute; width:2px; height:2px; background:var(--brand-2); border-radius:50%; opacity:.6; filter:blur(.2px) }
+
+    /* Cards flutuantes dentro do banner */
+    .banner-cards{ position:absolute; bottom:18px; left:18px; display:flex; gap:12px; flex-wrap:wrap }
+    .card{
+      width:132px; padding:14px 12px; border-radius:14px; text-align:center; color:var(--text);
+      background:linear-gradient(180deg, rgba(18,22,32,.9), rgba(10,13,20,.9));
+      border:1px solid color-mix(in srgb, var(--brand) 30%, var(--line));
+      box-shadow:0 10px 25px rgba(0,0,0,.35), 0 0 0 0 rgba(0,191,255,.0);
+      transition:transform .18s ease, box-shadow .25s ease, border-color .25s ease;
+      transform-style:preserve-3d; will-change:transform;
+    }
+    .card:hover{ transform:translateY(-4px) rotateX(3deg); border-color:color-mix(in srgb, var(--brand) 60%, var(--line)); box-shadow:0 12px 30px rgba(0,0,0,.4), 0 0 30px rgba(0,191,255,.15) }
+    .card-emoji{ font-size:1.55rem; display:block; margin-bottom:6px }
+    .card-title{ font-size:.95rem; font-weight:800; letter-spacing:.2px; color:var(--brand-2) }
+
+    /* Responsivo */
+    @media (max-width: 740px){
+      .container{ padding:20px 14px 70px }
+      .banner-desktop{ display:none }
+      .banner-mobile{ display:block }
+      .banner-cards{ position:absolute; inset:auto 10px 10px 10px; justify-content:center }
+      .card{ width:calc(50% - 8px) }
     }
 
-    /* Popup Login */
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
+    /* ——— Popup Login (glassmorphism) ——— */
+    .popup-overlay{ position:fixed; inset:0; display:none; place-items:center; z-index:100; background:rgba(2,4,9,.6) }
+    .popup{
+      width:min(92vw, 380px); padding:22px; border-radius:16px; text-align:center; color:var(--text);
+      background:linear-gradient(180deg, rgba(12,16,26,.8), rgba(8,12,20,.8));
+      border:1px solid color-mix(in srgb, var(--brand) 35%, var(--line));
+      box-shadow:0 18px 60px rgba(0,0,0,.5);
+      position:relative;
     }
-    .popup {
-      background: #111;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #00bfff;
-      box-shadow: 0 0 15px #00bfff;
-      width: 300px;
-      text-align: center;
+    .popup h2{ margin:0 0 12px; color:var(--brand) }
+    .field{ text-align:left; margin-top:10px }
+    .label{ font-size:.85rem; color:var(--muted); display:block; margin:0 0 6px }
+    .input{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line);
+      outline:none; background:#0c1220; color:var(--text);
+      box-shadow:inset 0 0 0 1px transparent; transition:border-color .2s ease, box-shadow .2s ease;
     }
-    .popup h2 { color: #00bfff; margin-bottom: 15px; }
-    .popup input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      border: none;
-      background: #eaeef5;
+    .input:focus{ border-color:color-mix(in srgb, var(--brand) 60%, var(--line)); box-shadow:0 0 0 3px rgba(0,191,255,.15) }
+    .password-container{ position:relative }
+    .toggle-password{ position:absolute; right:12px; top:50%; translate:0 -50%; cursor:pointer; color:var(--muted); font-size:18px }
+    .remember{ display:flex; align-items:center; gap:8px; margin:8px 0 2px; color:var(--muted); font-size:.9rem }
+
+    .btn{
+      width:100%; margin-top:12px; padding:12px; border-radius:12px; border:1px solid color-mix(in srgb, var(--brand) 55%, transparent);
+      background:linear-gradient(180deg, rgba(0,191,255,.15), rgba(124,77,255,.15));
+      color:var(--text); font-weight:800; letter-spacing:.3px; cursor:pointer;
+      box-shadow:0 0 0 0 rgba(0,191,255,.0); transition:box-shadow .25s ease, transform .15s ease;
     }
-    .password-container { position: relative; }
-    .toggle-password {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #555;
-    }
-    .popup button {
-      width: 100%;
-      padding: 10px;
-      background: #00bfff;
-      border: none;
-      color: white;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .popup button:hover { background: #0099cc; }
-    .popup .error { color: red; font-size: 0.9em; margin-top: 8px; }
+    .btn:hover{ box-shadow:0 0 30px rgba(0,191,255,.2) }
+    .error{ color:var(--danger); font-size:.9rem; margin-top:8px; min-height:1.2em }
+
+    /* ——— Utilidades ——— */
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0 }
   </style>
 </head>
 <body>
-  <header>
+  <!-- Header -->
+  <header aria-label="Barra superior">
     <div class="logo">
-      <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems">
+      <img src="https://static.wixstatic.com/media/d830b0_8cec50a98bbf4775814dbfa5386585e8~mv2.png" alt="Logo CB Systems" />
+      <span class="wordmark">CB Systems</span>
     </div>
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="servicos.html">Serviços</a>
-      <a href="orcamento.html">Orçamento</a>
-      <a href="sistemas.html">Sistemas</a>
-      <a href="duvidas.html">Dúvidas</a>
-      <button class="login-btn" onclick="abrirLogin()">Login</button>
+    <nav aria-label="Principal">
+      <a class="nav-link" href="index.html">Início</a>
+      <a class="nav-link" href="servicos.html">Serviços</a>
+      <a class="nav-link" href="orcamento.html">Orçamento</a>
+      <a class="nav-link" href="sistemas.html">Sistemas</a>
+      <a class="nav-link" href="duvidas.html">Dúvidas</a>
+      <button class="login-btn" type="button" onclick="abrirLogin()" aria-haspopup="dialog" aria-controls="popupLogin">Login</button>
     </nav>
   </header>
 
-  <div class="container">
-    <div class="banner banner-desktop">
-      <div class="banner-cards">
-        <a href="mei.html"><div class="banner-card"><span>💼</span><div class="card-title">MEI</div></div></a>
-        <a href="promocoes.html"><div class="banner-card"><span>🏷️</span><div class="card-title">Promoções</div></div></a>
-        <a href="indicados.html"><div class="banner-card"><span>🤝</span><div class="card-title">Indicação</div></div></a>
-        <a href="teste.html"><div class="banner-card"><span>⏳</span><div class="card-title">Teste grátis</div></div></a>
+  <!-- Conteúdo principal -->
+  <main class="container">
+    <section class="hero" aria-label="Destaque">
+      <div class="banner banner-desktop" id="banner">
+        <div class="banner-img" style="background-image:url('https://github.com/ClenaStore/painel-principal/blob/main/img/Design%20sem%20nome%20(11).png?raw=true')"></div>
+        <div class="neon-border"></div>
+        <div class="particles" id="particles"></div>
+        <div class="banner-cards">
+          <a href="mei.html" class="card" aria-label="Abrir MEI">
+            <span class="card-emoji">💼</span>
+            <div class="card-title">MEI</div>
+          </a>
+          <a href="promocoes.html" class="card" aria-label="Abrir Promoções">
+            <span class="card-emoji">🏷️</span>
+            <div class="card-title">Promoções</div>
+          </a>
+          <a href="indicados.html" class="card" aria-label="Abrir Indicação">
+            <span class="card-emoji">🤝</span>
+            <div class="card-title">Indicação</div>
+          </a>
+          <a href="teste.html" class="card" aria-label="Abrir Teste grátis">
+            <span class="card-emoji">⏳</span>
+            <div class="card-title">Teste grátis</div>
+          </a>
+        </div>
       </div>
-    </div>
-  </div>
+
+      <div class="banner banner-mobile">
+        <div class="banner-img" style="background-image:url('https://github.com/ClenaStore/painel-principal/blob/main/img/CLENA.COM.BR.png?raw=true')"></div>
+        <div class="neon-border"></div>
+        <div class="particles" id="particles-m"></div>
+        <div class="banner-cards">
+          <a href="mei.html" class="card" aria-label="Abrir MEI"><span class="card-emoji">💼</span><div class="card-title">MEI</div></a>
+          <a href="promocoes.html" class="card" aria-label="Abrir Promoções"><span class="card-emoji">🏷️</span><div class="card-title">Promoções</div></a>
+          <a href="indicados.html" class="card" aria-label="Abrir Indicação"><span class="card-emoji">🤝</span><div class="card-title">Indicação</div></a>
+          <a href="teste.html" class="card" aria-label="Abrir Teste grátis"><span class="card-emoji">⏳</span><div class="card-title">Teste grátis</div></a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Popup Login -->
-  <div class="popup-overlay" id="popupLogin">
+  <div class="popup-overlay" id="popupLogin" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
     <div class="popup">
-      <h2>Bem-vindo à CB Systems</h2>
-      <input type="text" id="usuario" placeholder="Usuário" />
-      <div class="password-container">
-        <input type="password" id="senha" placeholder="Senha" />
-        <span class="toggle-password" onclick="togglePassword()">👁</span>
-      </div>
-      <label><input type="checkbox" id="remember"> Lembrar senha</label>
-      <button onclick="login()">Entrar</button>
-      <div class="error" id="errorMsg"></div>
+      <h2 id="loginTitle">Bem-vindo à CB Systems</h2>
+      <form onsubmit="event.preventDefault(); login();">
+        <div class="field">
+          <label class="label" for="usuario">Usuário</label>
+          <input class="input" id="usuario" name="usuario" type="text" autocomplete="username" placeholder="Seu usuário" />
+        </div>
+        <div class="field password-container">
+          <label class="label" for="senha">Senha</label>
+          <input class="input" id="senha" name="senha" type="password" autocomplete="current-password" placeholder="••••••••" />
+          <button type="button" class="toggle-password" aria-label="Mostrar/ocultar senha" onclick="togglePassword()">👁</button>
+        </div>
+        <label class="remember"><input id="remember" type="checkbox" /> Lembrar senha</label>
+        <button class="btn" type="submit">Entrar</button>
+        <div class="error" id="errorMsg" role="status" aria-live="polite"></div>
+      </form>
     </div>
   </div>
 
-<script>
-  const popup = document.getElementById("popupLogin");
-  function abrirLogin(){ popup.style.display = "flex"; }
-  function togglePassword(){
-    const pass = document.getElementById("senha");
-    pass.type = pass.type === "password" ? "text" : "password";
-  }
-  document.addEventListener("keydown", e=>{
-    if(e.key==="Enter" && popup.style.display==="flex"){ login(); }
-  });
-
-  async function login(){
-    const usuario = document.getElementById("usuario").value.trim();
-    const senha = document.getElementById("senha").value.trim();
-    const errorMsg = document.getElementById("errorMsg");
-    errorMsg.textContent = "";
-    try{
-      const res = await fetch("https://painel-principal.vercel.app/api/login",{
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify({ usuario, senha })
-      });
-      if(!res.ok) throw new Error("Falha na conexão");
-      const data = await res.json();
-      if(data.sucesso){
-        if(usuario.toLowerCase() === "mercatto") window.location.href = "painel-mercatto.html";
-        else if(usuario.toLowerCase() === "villa") window.location.href = "painel-villa.html";
-        else if(usuario.toLowerCase() === "padaria") window.location.href = "painel-padaria.html";
-        else window.location.href = "painel.html";
+  <script>
+    // ——— Partículas leves ———
+    function spawnParticles(el, count=60){
+      const rect = el.getBoundingClientRect();
+      for(let i=0;i<count;i++){
+        const d = document.createElement('span');
+        d.className = 'dot';
+        d.style.left = Math.random()*100 + '%';
+        d.style.top  = Math.random()*100 + '%';
+        const s = 1 + Math.random()*2; // tamanho
+        d.style.width = s+'px'; d.style.height = s+'px';
+        const driftX = (Math.random()>.5?1:-1)*(4+Math.random()*10);
+        const driftY = (Math.random()>.5?1:-1)*(4+Math.random()*8);
+        d.animate([
+          { transform:`translate(0,0)`, opacity:.3+Math.random()*.6 },
+          { transform:`translate(${driftX}px, ${driftY}px)`, opacity:.1+Math.random()*.4 }
+        ], { duration: 6000+Math.random()*8000, direction:'alternate', iterations: Infinity, easing:'ease-in-out' });
+        el.appendChild(d);
       }
-      else{ errorMsg.textContent = "Usuário ou senha inválidos!"; }
-    }catch(err){
-      errorMsg.textContent = "Erro ao conectar ao servidor!";
     }
-  }
-</script>
+    spawnParticles(document.getElementById('particles'));
+    spawnParticles(document.getElementById('particles-m'));
+
+    // ——— Parallax sutil no banner ———
+    const banner = document.getElementById('banner');
+    banner?.addEventListener('pointermove', (e)=>{
+      const r = banner.getBoundingClientRect();
+      const cx = (e.clientX - r.left)/r.width - .5;
+      const cy = (e.clientY - r.top)/r.height - .5;
+      banner.querySelector('.banner-img').style.transform = `scale(1.04) translate(${cx*6}px, ${cy*6}px)`;
+    });
+
+    // ——— Login popup ———
+    const popup = document.getElementById('popupLogin');
+    function abrirLogin(){ popup.style.display = 'grid'; setTimeout(()=>document.getElementById('usuario').focus(),50); }
+    function fecharLogin(e){ if(e?.target===popup) popup.style.display='none'; }
+    popup.addEventListener('click', fecharLogin);
+    function togglePassword(){
+      const pass = document.getElementById('senha');
+      pass.type = pass.type === 'password' ? 'text' : 'password';
+    }
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape') popup.style.display='none';
+      if(e.key==='Enter' && popup.style.display!=='none') login();
+    });
+
+    async function login(){
+      const usuario = document.getElementById('usuario').value.trim();
+      const senha = document.getElementById('senha').value.trim();
+      const errorMsg = document.getElementById('errorMsg');
+      errorMsg.textContent = '';
+      try{
+        const res = await fetch('https://painel-principal.vercel.app/api/login',{
+          method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ usuario, senha })
+        });
+        if(!res.ok) throw new Error('Falha na conexão');
+        const data = await res.json();
+        if(data.sucesso){
+          const u = usuario.toLowerCase();
+          if(u==='mercatto')      window.location.href='painel-mercatto.html';
+          else if(u==='villa')    window.location.href='painel-villa.html';
+          else if(u==='padaria')  window.location.href='painel-padaria.html';
+          else                    window.location.href='painel.html';
+        }else{
+          errorMsg.textContent = 'Usuário ou senha inválidos!';
+        }
+      }catch(err){ errorMsg.textContent = 'Erro ao conectar ao servidor!'; }
+    }
+  </script>
 </body>
 </html>
